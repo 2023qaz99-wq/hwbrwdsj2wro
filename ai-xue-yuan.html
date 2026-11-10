@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <link rel="icon" href="data:," />
+    <title>AI 智能學院｜學會用 AI，工作快一倍</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]), a.btn { min-height: 2.25rem; }
+      * { box-sizing: border-box; }
+      :root{
+        --ink:#1c2430; --ink2:#46536a; --mut:#75808f;
+        --bg:#f7f5f1; --surface:#ffffff; --surface2:#f0ede6;
+        --line:#e3ded2; --accent:#0e6b5c; --accent-d:#0a5246;
+        --amber:#e8a33d; --amber-soft:#fdf3e0;
+        --pink:#e7548c; --pink-d:#c93a72; --pink-soft:#fdeef4; --pink-bg:#fff7fa;
+        --red:#d93b3b; --red-soft:#fdecec;
+        --radius:14px;
+        --shadow:0 10px 30px rgba(28,36,48,.10);
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --ink:#eef1f5; --ink2:#c3ccd9; --mut:#8d99ab;
+          --bg:#12161d; --surface:#1b212c; --surface2:#232b38;
+          --line:#303a49; --accent:#3ec2ab; --accent-d:#3ec2ab;
+          --amber:#eeb154; --amber-soft:#2c2417;
+          --pink:#f083ab; --pink-d:#f083ab; --pink-soft:#33202b; --pink-bg:#1d171c;
+          --red:#ff7a7a; --red-soft:#332021;
+          --shadow:0 10px 30px rgba(0,0,0,.45);
+        }
+      }
+      html{ scroll-behavior:smooth; }
+      body{ margin:0; font-family:"Noto Sans TC",system-ui,sans-serif; background:var(--bg); color:var(--ink); line-height:1.65; }
+      h1,h2,h3,.serif{ font-family:"Noto Serif TC","Noto Sans TC",serif; }
+      img{ max-width:100%; }
+      .wrap{ max-width:1120px; margin:0 auto; padding:0 20px; }
+      button{ font-family:inherit; cursor:pointer; }
+      input,textarea,select{ font-family:inherit; font-size:1rem; color:var(--ink); }
+      :focus-visible{ outline:3px solid var(--amber); outline-offset:2px; }
+
+      /* ---------- header ---------- */
+      header.site{ position:sticky; top:0; z-index:40; background:var(--surface); border-bottom:1px solid var(--line); }
+      .site-in{ display:flex; align-items:center; gap:18px; padding:10px 0; flex-wrap:wrap; }
+      .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); }
+      .brand-mark{ width:40px; height:40px; border-radius:10px; background:var(--accent); color:#fff; display:grid; place-items:center; font-family:"Noto Serif TC",serif; font-weight:900; font-size:1.15rem; }
+      .brand b{ font-size:1.25rem; letter-spacing:.06em; }
+      .brand small{ display:block; font-size:.68rem; color:var(--mut); letter-spacing:.18em; margin-top:-4px; }
+      nav.main{ display:flex; gap:4px; margin-left:auto; flex-wrap:wrap; }
+      nav.main a{ color:var(--ink2); text-decoration:none; padding:8px 12px; border-radius:8px; font-size:.95rem; display:inline-flex; align-items:center; min-height:2.25rem; }
+      nav.main a:hover{ background:var(--surface2); color:var(--ink); }
+      .searchbar{ display:flex; gap:8px; width:100%; margin:2px 0 12px; }
+      .searchbar input{ flex:1; padding:10px 16px; border:1.5px solid var(--line); border-radius:999px; background:var(--surface2); min-height:2.75rem; }
+      .searchbar input:focus{ background:var(--surface); border-color:var(--accent); outline:none; }
+      .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; border:none; border-radius:999px; padding:10px 22px; font-weight:700; font-size:.95rem; text-decoration:none; transition:transform .12s ease, background .12s ease; }
+      .btn:active{ transform:scale(.97); }
+      .btn-accent{ background:var(--accent); color:#fff; }
+      .btn-accent:hover{ background:var(--accent-d); }
+      .btn-ghost{ background:transparent; color:var(--ink); border:1.5px solid var(--line); }
+      .btn-amber{ background:var(--amber); color:#23180a; }
+
+      /* ---------- hero ---------- */
+      .hero{ background:var(--surface); border-bottom:1px solid var(--line); }
+      .hero-in{ display:grid; grid-template-columns:1.15fr .85fr; gap:36px; padding:52px 0 44px; align-items:center; }
+      .hero h1{ font-size:2.35rem; line-height:1.3; margin:0 0 14px; font-weight:900; }
+      .hero h1 .hl{ color:var(--accent); box-shadow:inset 0 -0.45em 0 var(--amber-soft); }
+      .hero p.lede{ color:var(--ink2); font-size:1.06rem; margin:0 0 22px; max-width:34em; }
+      .hero-stats{ display:flex; gap:28px; flex-wrap:wrap; margin-top:26px; }
+      .hero-stats div b{ font-size:1.4rem; display:block; font-family:"Noto Serif TC",serif; }
+      .hero-stats div span{ color:var(--mut); font-size:.85rem; }
+      .hero-card{ background:var(--surface2); border:1px solid var(--line); border-radius:18px; padding:22px; }
+      .hero-card h3{ margin:0 0 6px; font-size:1.05rem; }
+      .hero-card p{ color:var(--ink2); font-size:.92rem; margin:0 0 14px; }
+      .path-list{ list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+      .path-list li{ background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:10px 14px; font-size:.93rem; display:flex; justify-content:space-between; gap:10px; }
+      .path-list li span{ color:var(--mut); font-size:.85rem; white-space:nowrap; }
+
+      section.blk{ padding:52px 0 8px; }
+      .blk-head{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:8px; }
+      .blk-head h2{ font-size:1.65rem; margin:0; font-weight:900; }
+      .blk-head p{ color:var(--mut); margin:0; }
+      .cat-row{ display:flex; gap:8px; flex-wrap:wrap; margin:16px 0 20px; }
+      .cat-chip{ border:1.5px solid var(--line); background:var(--surface); color:var(--ink2); border-radius:999px; padding:7px 16px; font-size:.9rem; font-weight:500; }
+      .cat-chip.on{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
+
+      .course-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+      .course-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; text-align:left; padding:0; width:100%; color:var(--ink); }
+      .course-card:hover{ box-shadow:var(--shadow); }
+      .cc-top{ padding:18px 18px 0; }
+      .cc-cat{ display:inline-block; font-size:.75rem; font-weight:700; letter-spacing:.08em; color:var(--accent-d); background:var(--amber-soft); padding:3px 10px; border-radius:999px; margin-bottom:10px; }
+      .cc-top h3{ margin:0 0 6px; font-size:1.12rem; line-height:1.45; }
+      .cc-top p{ margin:0; color:var(--ink2); font-size:.9rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+      .cc-meta{ padding:12px 18px 0; color:var(--mut); font-size:.85rem; display:flex; gap:14px; flex-wrap:wrap; }
+      .cc-rate{ color:var(--ink); font-weight:700; }
+      .cc-rate .star{ color:var(--amber); }
+      .cc-foot{ margin-top:auto; padding:14px 18px 18px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+      .price b{ font-size:1.25rem; font-family:"Noto Serif TC",serif; }
+      .price s{ color:var(--mut); font-size:.85rem; margin-left:6px; }
+      .cc-open{ font-size:.88rem; font-weight:700; color:var(--accent-d); white-space:nowrap; }
+      .no-result{ grid-column:1/-1; text-align:center; color:var(--mut); padding:34px 0; }
+
+      /* instructors / reviews / faq */
+      .inst-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px; }
+      .inst-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:20px; }
+      .inst-card .ava{ width:52px; height:52px; border-radius:50%; background:var(--accent); color:#fff; display:grid; place-items:center; font-family:"Noto Serif TC",serif; font-weight:900; font-size:1.3rem; margin-bottom:10px; }
+      .inst-card h3{ margin:0 0 2px; font-size:1.05rem; }
+      .inst-card .role{ color:var(--accent-d); font-size:.85rem; font-weight:700; margin-bottom:8px; }
+      .inst-card p{ color:var(--ink2); font-size:.9rem; margin:0 0 10px; }
+      .inst-card .nums{ color:var(--mut); font-size:.83rem; border-top:1px dashed var(--line); padding-top:10px; }
+      .rev-layout{ display:grid; grid-template-columns:300px 1fr; gap:22px; margin-top:18px; align-items:start; }
+      .rev-sum{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:22px; text-align:center; }
+      .rev-sum .big{ font-size:2.6rem; font-family:"Noto Serif TC",serif; font-weight:900; }
+      .rev-sum .stars{ color:var(--amber); letter-spacing:.2em; }
+      .bar-row{ display:flex; align-items:center; gap:8px; font-size:.82rem; color:var(--mut); margin-top:7px; }
+      .bar{ flex:1; height:8px; background:var(--surface2); border-radius:99px; overflow:hidden; }
+      .bar i{ display:block; height:100%; background:var(--amber); }
+      .rev-list{ display:grid; gap:14px; }
+      .rev-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; }
+      .rev-card .who{ display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; }
+      .rev-card .who b{ font-size:.98rem; }
+      .rev-card .who span{ color:var(--mut); font-size:.83rem; }
+      .rev-card .stars{ color:var(--amber); font-size:.85rem; }
+      .rev-card p{ margin:8px 0 0; color:var(--ink2); font-size:.94rem; }
+      details.faq{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); margin-top:10px; }
+      details.faq summary{ padding:14px 18px; font-weight:700; cursor:pointer; list-style:none; display:flex; align-items:center; }
+      details.faq summary::-webkit-details-marker{ display:none; }
+      details.faq p{ margin:0; padding:0 18px 16px; color:var(--ink2); font-size:.94rem; }
+
+      footer.site{ margin-top:60px; background:var(--surface); border-top:1px solid var(--line); }
+      .foot-in{ display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:24px; padding:38px 0 10px; }
+      footer.site h4{ margin:0 0 10px; font-size:.95rem; }
+      footer.site a, footer.site button.linklike{ display:block; color:var(--ink2); text-decoration:none; font-size:.9rem; padding:5px 0; background:none; border:none; text-align:left; }
+      footer.site a:hover, footer.site button.linklike:hover{ color:var(--accent-d); text-decoration:underline; }
+      footer.site p{ color:var(--mut); font-size:.88rem; margin:0; max-width:26em; }
+      .foot-btm{ border-top:1px solid var(--line); padding:14px 0 22px; color:var(--mut); font-size:.82rem; display:flex; gap:16px; flex-wrap:wrap; justify-content:space-between; }
+
+      /* ---------- modal ---------- */
+      .modal-bk{ position:fixed; inset:0; background:rgba(15,18,24,.55); z-index:80; display:none; align-items:flex-start; justify-content:center; overflow-y:auto; padding:22px 14px; }
+      .modal-bk.open{ display:flex; }
+      .modal{ background:var(--surface); color:var(--ink); border-radius:18px; width:100%; max-width:560px; padding:26px; box-shadow:var(--shadow); margin:auto 0; }
+      .modal.wide{ max-width:760px; }
+      .modal h2{ margin:0 0 6px; font-size:1.4rem; }
+      .modal .sub{ color:var(--mut); font-size:.92rem; margin:0 0 16px; }
+      .modal .x{ float:right; background:var(--surface2); border:1px solid var(--line); width:38px; height:38px; border-radius:50%; font-size:1rem; }
+      .field{ margin-bottom:14px; }
+      .field label{ display:block; font-weight:700; font-size:.9rem; margin-bottom:5px; }
+      .field input,.field textarea,.field select{ width:100%; padding:10px 12px; border:1.5px solid var(--line); border-radius:10px; background:var(--surface); }
+      .field .hint{ color:var(--mut); font-size:.82rem; margin-top:4px; }
+      .err{ background:var(--red-soft); color:var(--red); border-radius:10px; padding:10px 14px; font-size:.9rem; margin-bottom:12px; display:none; }
+      .ok-note{ background:#e7f4ee; color:#0a5246; border-radius:10px; padding:10px 14px; font-size:.9rem; margin-bottom:12px; }
+      @media (prefers-color-scheme: dark){ .ok-note{ background:#17352c; color:#7fd8c0; } }
+      .sync-code{ font-family:ui-monospace,Menlo,monospace; background:var(--surface2); border:1.5px dashed var(--amber); border-radius:12px; padding:14px; word-break:break-all; font-size:1.02rem; text-align:center; margin:10px 0; }
+
+      /* course detail */
+      .cd-head{ border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:14px; }
+      .cd-head h2{ padding-right:44px; }
+      .cd-grid{ display:grid; grid-template-columns:1fr 230px; gap:20px; }
+      .chap{ border:1px solid var(--line); border-radius:12px; margin-bottom:12px; overflow:hidden; }
+      .chap-h{ background:var(--surface2); padding:12px 16px; }
+      .chap-h b{ font-size:.98rem; }
+      .chap-h .goal{ color:var(--ink2); font-size:.87rem; margin-top:2px; }
+      .chap ul{ list-style:none; margin:0; padding:6px 16px 10px; }
+      .chap li{ display:flex; justify-content:space-between; gap:12px; padding:6px 0; border-bottom:1px dashed var(--line); font-size:.92rem; }
+      .chap li:last-child{ border-bottom:none; }
+      .chap li .mins{ color:var(--mut); white-space:nowrap; font-size:.85rem; }
+      .chap .hw{ padding:0 16px 12px; color:var(--ink2); font-size:.87rem; }
+      .chip-list{ display:flex; flex-wrap:wrap; gap:6px; margin:6px 0 0; padding:0; list-style:none; }
+      .chip-list li{ background:var(--amber-soft); border-radius:999px; padding:3px 11px; font-size:.82rem; }
+      .side-box{ background:var(--surface2); border:1px solid var(--line); border-radius:12px; padding:16px; font-size:.9rem; height:fit-content; }
+      .side-box .price b{ font-size:1.5rem; }
+      .side-box dl{ margin:12px 0 0; display:grid; gap:7px; }
+      .side-box dt{ color:var(--mut); font-size:.8rem; }
+      .side-box dd{ margin:0; font-weight:600; }
+      .kv{ font-size:.92rem; color:var(--ink2); }
+      .kv b{ color:var(--ink); }
+
+      /* ---------- 404 vanish ---------- */
+      #view-404{ display:none; min-height:100vh; background:#fff; color:#222; font-family:ui-monospace,Menlo,monospace; }
+      @media (prefers-color-scheme: dark){ #view-404{ background:#101216; color:#ddd; } }
+      .nf-in{ max-width:640px; margin:0 auto; padding:15vh 24px 40px; text-align:center; }
+      .nf-in .code{ font-size:5rem; font-weight:700; margin:0; }
+      .nf-in p{ color:#888; }
+      .nf-search{ display:flex; gap:8px; max-width:420px; margin:28px auto 0; }
+      .nf-search input{ flex:1; padding:10px 14px; border:1px solid #bbb; border-radius:8px; background:transparent; color:inherit; }
+      .nf-search button{ padding:10px 18px; border:1px solid #bbb; background:transparent; color:inherit; border-radius:8px; }
+
+      /* ---------- private space ---------- */
+      #view-space{ display:none; background:var(--pink-bg); min-height:100vh; }
+      .sp-top{ position:sticky; top:0; z-index:30; background:var(--surface); border-bottom:1px solid var(--line); }
+      .sp-top-in{ display:flex; align-items:center; gap:10px; padding:10px 0; flex-wrap:wrap; }
+      .sp-title{ font-family:"Noto Serif TC",serif; font-weight:900; font-size:1.15rem; color:var(--pink-d); }
+      .sp-who{ font-size:.85rem; color:var(--mut); }
+      .lock-pill{ margin-left:auto; font-size:.82rem; color:var(--mut); background:var(--pink-soft); border-radius:999px; padding:5px 12px; }
+      .lock-pill.warn{ background:var(--red); color:#fff; font-weight:700; animation:pulse 1s infinite; }
+      @keyframes pulse{ 50%{ opacity:.65; } }
+      @media (prefers-reduced-motion: reduce){ .lock-pill.warn{ animation:none; } }
+      .btn-lock{ background:var(--pink); color:#fff; border:none; }
+      .btn-lock:hover{ background:var(--pink-d); }
+      .sp-tabs{ display:flex; gap:6px; flex-wrap:wrap; padding:0 0 10px; }
+      .sp-tab{ border:1.5px solid var(--line); background:var(--surface); border-radius:999px; padding:8px 16px; font-size:.92rem; font-weight:600; white-space:nowrap; color:var(--ink2); position:relative; }
+      .sp-tab.on{ background:var(--pink); border-color:var(--pink); color:#fff; }
+      .sp-tab .bdg{ position:absolute; top:-6px; right:-4px; background:var(--red); color:#fff; font-size:.68rem; min-width:19px; height:19px; border-radius:99px; display:grid; place-items:center; padding:0 5px; font-weight:700; }
+      .sp-body{ padding:26px 0 70px; }
+      .sp-pane{ display:none; }
+      .sp-pane.on{ display:block; }
+      .card{ background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:20px; margin-bottom:16px; }
+      .card h3{ margin:0 0 10px; font-size:1.08rem; color:var(--ink); }
+      .card h3 .tag{ font-size:.75rem; background:var(--pink-soft); color:var(--pink-d); border-radius:99px; padding:2px 9px; margin-left:8px; vertical-align:middle; }
+      .alert-intrude{ background:var(--red-soft); border:1.5px solid var(--red); border-radius:16px; padding:16px 20px; margin-bottom:16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+      .alert-intrude b{ color:var(--red); }
+      .alert-urgent{ background:var(--red); color:#fff; border-radius:16px; padding:16px 20px; margin-bottom:16px; }
+      .alert-urgent a{ color:#fff; font-weight:700; }
+      .count-num{ font-size:2.2rem; font-family:"Noto Serif TC",serif; font-weight:900; color:var(--pink-d); }
+      .mut{ color:var(--mut); font-size:.9rem; }
+      .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+      .mem-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+      .mem-card{ background:var(--surface); border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+      .mem-card img{ width:100%; height:150px; object-fit:cover; display:block; }
+      .mem-card .mc-in{ padding:12px 14px; }
+      .mem-card h4{ margin:0 0 4px; font-size:.98rem; }
+      .mem-card p{ margin:0; color:var(--ink2); font-size:.88rem; white-space:pre-wrap; }
+      .mem-card .mc-meta{ color:var(--mut); font-size:.78rem; margin-top:8px; }
+      .msg{ border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin-bottom:10px; background:var(--surface); }
+      .msg .m-head{ display:flex; gap:8px; align-items:baseline; flex-wrap:wrap; font-size:.85rem; color:var(--mut); }
+      .msg .m-head b{ color:var(--ink); font-size:.95rem; }
+      .msg p{ margin:6px 0 0; white-space:pre-wrap; }
+      .msg.urgent{ border:2px solid var(--red); background:var(--red-soft); }
+      .msg .new-dot{ background:var(--pink); color:#fff; font-size:.7rem; border-radius:99px; padding:1px 8px; font-weight:700; }
+      .btn-pink{ background:var(--pink); color:#fff; border:none; }
+      .btn-pink:hover{ background:var(--pink-d); }
+      .btn-soft{ background:var(--pink-soft); color:var(--pink-d); border:none; }
+      .btn-sm{ padding:6px 14px; font-size:.85rem; }
+      .ev-row{ display:flex; gap:14px; align-items:center; border:1px solid var(--line); border-radius:14px; padding:12px 16px; margin-bottom:10px; background:var(--surface); flex-wrap:wrap; }
+      .ev-date{ text-align:center; background:var(--pink-soft); border-radius:12px; padding:8px 12px; min-width:70px; }
+      .ev-date b{ display:block; font-size:1.15rem; color:var(--pink-d); font-family:"Noto Serif TC",serif; }
+      .ev-date span{ font-size:.75rem; color:var(--mut); }
+      .ev-badge{ margin-left:auto; font-size:.8rem; font-weight:700; border-radius:99px; padding:3px 11px; background:var(--surface2); color:var(--ink2); }
+      .ev-badge.soon{ background:var(--amber); color:#23180a; }
+      .ev-badge.today{ background:var(--red); color:#fff; }
+      .opt-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:12px 0; }
+      .opt{ border:2px solid var(--line); background:var(--surface); border-radius:14px; padding:14px 10px; text-align:center; font-weight:600; font-size:.95rem; color:var(--ink); }
+      .opt:hover{ border-color:var(--pink); }
+      .opt .sw{ width:34px; height:34px; border-radius:50%; margin:0 auto 6px; border:2px solid rgba(0,0,0,.08); }
+      .turn-note{ background:var(--amber-soft); border-radius:12px; padding:12px 16px; font-size:.93rem; margin-bottom:6px; }
+      .pet-stage{ text-align:center; padding:10px 0 4px; }
+      .pet-hearts{ color:var(--pink); letter-spacing:.3em; font-size:1.05rem; min-height:1.6em; }
+      .room{ border-radius:16px; border:1px solid var(--line); padding:18px; min-height:230px; position:relative; overflow:hidden; transition:background .3s; }
+      .room .floor{ position:absolute; left:0; right:0; bottom:0; height:52px; background:rgba(0,0,0,.10); }
+      .room .motto-sign{ position:absolute; top:16px; left:50%; transform:translateX(-50%); background:var(--surface); border:2px solid var(--pink); color:var(--pink-d); font-family:"Noto Serif TC",serif; font-weight:700; border-radius:10px; padding:6px 18px; font-size:1rem; max-width:88%; text-align:center; }
+      .room-items{ position:absolute; bottom:58px; left:0; right:0; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; padding:0 12px; }
+      .room-item{ background:var(--surface); border:1.5px solid var(--line); border-radius:12px; padding:8px 12px; font-size:.85rem; font-weight:600; box-shadow:var(--shadow); }
+      .toggle-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+      .tgl{ border:1.5px solid var(--line); background:var(--surface); border-radius:999px; padding:7px 15px; font-size:.88rem; font-weight:600; color:var(--ink2); }
+      .tgl.on{ background:var(--pink); color:#fff; border-color:var(--pink); }
+      .hut-door{ text-align:center; padding:28px 16px; }
+      .hut-door .door-ic{ width:74px; height:96px; margin:0 auto 14px; border:3px solid var(--pink); border-radius:38px 38px 10px 10px; background:var(--pink-soft); position:relative; }
+      .hut-door .door-ic::after{ content:""; position:absolute; right:10px; top:50%; width:9px; height:9px; border-radius:50%; background:var(--pink); }
+      .sync-note{ font-size:.8rem; color:var(--mut); text-align:center; margin-top:14px; }
+      .toast{ position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(20px); background:var(--ink); color:var(--bg); padding:11px 20px; border-radius:999px; font-size:.92rem; z-index:120; opacity:0; pointer-events:none; transition:.25s; max-width:92vw; text-align:center; }
+      .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+      @media (max-width:900px){
+        .course-grid,.inst-grid{ grid-template-columns:repeat(2,1fr); }
+        .hero-in{ grid-template-columns:1fr; padding:36px 0; }
+        .rev-layout{ grid-template-columns:1fr; }
+        .foot-in{ grid-template-columns:1fr 1fr; }
+        .cd-grid{ grid-template-columns:1fr; }
+        .mem-grid{ grid-template-columns:repeat(2,1fr); }
+      }
+      @media (max-width:560px){
+        .course-grid,.inst-grid,.mem-grid,.grid2{ grid-template-columns:1fr; }
+        .hero h1{ font-size:1.75rem; }
+        .opt-grid{ grid-template-columns:repeat(2,1fr); }
+        nav.main{ margin-left:0; }
+        .modal{ padding:20px 16px; }
+      }
+    </style>
+  </head>
+  <body>
+
+  <!-- ================= 外層：AI 課程網站 ================= -->
+  <div id="view-course">
+    <header class="site">
+      <div class="wrap">
+        <div class="site-in">
+          <a class="brand" href="#" onclick="return false">
+            <span class="brand-mark">院</span>
+            <span><b>AI 智能學院</b><small>人工智慧應用與實務學院</small></span>
+          </a>
+          <nav class="main">
+            <a href="#courses">課程總覽</a>
+            <a href="#instructors">講師陣容</a>
+            <a href="#reviews">學員評價</a>
+            <a href="#faq">常見問題</a>
+          </nav>
+        </div>
+        <form class="searchbar" id="searchForm" autocomplete="off">
+          <input id="searchInput" type="search" placeholder="搜尋課程、講師或關鍵字，例如：Python、提示工程、電腦視覺…" aria-label="搜尋課程" />
+          <button class="btn btn-accent" type="submit">搜尋</button>
+        </form>
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="wrap hero-in">
+        <div>
+          <h1>學會用 AI，<br />把一天的工作<span class="hl">提早兩小時做完</span></h1>
+          <p class="lede">從生成式 AI 入門到模型部署，12 門實作導向課程、190 餘堂影音內容，每門課都有章節作業與期末專題。學完不只懂觀念，還帶得走作品。</p>
+          <a class="btn btn-accent" href="#courses">瀏覽全部課程</a>
+          <a class="btn btn-ghost" href="#reviews" style="margin-left:8px">看看學員怎麼說</a>
+          <div class="hero-stats">
+            <div><b>12 門</b><span>完整實作課程</span></div>
+            <div><b>18,400+</b><span>累積註冊學員</span></div>
+            <div><b>4.8 / 5</b><span>學員平均評分</span></div>
+            <div><b>終身觀看</b><span>含未來版本更新</span></div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h3>不知道從哪門開始？照學習路徑走</h3>
+          <p>三條路徑對應三種目標，每條都標好建議順序與總時數。</p>
+          <ul class="path-list">
+            <li>職場效率路徑：提示工程 → 資料分析<span>約 12 小時</span></li>
+            <li>工程師路徑：Python → 機器學習 → MLOps<span>約 20 小時</span></li>
+            <li>創作者路徑：AI 繪圖 → 語言模型應用<span>約 12 小時</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <main class="wrap">
+      <section class="blk" id="courses">
+        <div class="blk-head"><h2>課程總覽</h2><p id="courseCount"></p></div>
+        <div class="cat-row" id="catRow"></div>
+        <div class="course-grid" id="courseGrid"></div>
+      </section>
+
+      <section class="blk" id="instructors">
+        <div class="blk-head"><h2>講師陣容</h2><p>全部來自業界第一線，平均 8 年以上實務經驗</p></div>
+        <div class="inst-grid" id="instGrid"></div>
+      </section>
+
+      <section class="blk" id="reviews">
+        <div class="blk-head"><h2>學員評價</h2><p>來自已完課學員的真實回饋</p></div>
+        <div class="rev-layout">
+          <div class="rev-sum">
+            <div class="big">4.8</div>
+            <div class="stars">★★★★★</div>
+            <p class="mut" style="margin:6px 0 12px">共 9,215 則評分</p>
+            <div class="bar-row"><span>5 星</span><span class="bar"><i style="width:84%"></i></span><span>84%</span></div>
+            <div class="bar-row"><span>4 星</span><span class="bar"><i style="width:12%"></i></span><span>12%</span></div>
+            <div class="bar-row"><span>3 星</span><span class="bar"><i style="width:2%"></i></span><span>2%</span></div>
+            <div class="bar-row"><span>2 星</span><span class="bar"><i style="width:1%"></i></span><span>1%</span></div>
+            <div class="bar-row"><span>1 星</span><span class="bar"><i style="width:1%"></i></span><span>1%</span></div>
+          </div>
+          <div class="rev-list" id="revList"></div>
+        </div>
+      </section>
+
+      <section class="blk" id="faq">
+        <div class="blk-head"><h2>常見問題</h2></div>
+        <div id="faqList"></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap">
+        <div class="foot-in">
+          <div>
+            <h4>AI 智能學院</h4>
+            <p>人工智慧應用與實務學院——台灣的 AI 實作教育品牌，專注把難懂的技術變成做得出來的作品。課程皆為預錄影音，購買後終身觀看。</p>
+          </div>
+          <div>
+            <h4>課程</h4>
+            <a href="#courses">全部課程</a><a href="#instructors">講師陣容</a><a href="#reviews">學員評價</a><a href="#faq">常見問題</a>
+          </div>
+          <div>
+            <h4>支援</h4>
+            <a href="#faq">退費政策</a><a href="#faq">證書說明</a><a href="#faq">團體報名</a><a href="#faq">發票開立</a>
+          </div>
+          <div>
+            <h4>合作</h4>
+            <button class="linklike" id="partnerLink" type="button">講師合作申請</button>
+            <a href="#faq">企業內訓</a><a href="#faq">校園合作</a>
+          </div>
+        </div>
+        <div class="foot-btm">
+          <span>© 2026 AI 智能學院 AI Academy Taiwan. All rights reserved.</span>
+          <span>客服時間：週一至週五 10:00–18:00</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ================= 404 消失頁 ================= -->
+  <div id="view-404">
+    <div class="nf-in">
+      <p class="code">404</p>
+      <h1 style="font-family:inherit;font-size:1.2rem">Not Found</h1>
+      <p>The requested resource could not be found on this server.</p>
+      <form class="nf-search" id="nfForm" autocomplete="off">
+        <input id="nfInput" type="text" placeholder="Search this site…" aria-label="站內搜尋" />
+        <button type="submit">Search</button>
+      </form>
+      <p id="nfMsg" style="min-height:1.4em"></p>
+    </div>
+  </div>
+
+  <!-- ================= 內層：秘密空間 ================= -->
+  <div id="view-space">
+    <div class="sp-top">
+      <div class="wrap">
+        <div class="sp-top-in">
+          <span class="sp-title">我們的空間</span>
+          <span class="sp-who" id="spWho"></span>
+          <span class="lock-pill" id="lockPill">30 秒後自動鎖定</span>
+          <button class="btn btn-lock btn-sm" id="lockNowBtn" type="button">立刻鎖定離開</button>
+        </div>
+        <div class="sp-tabs" id="spTabs">
+          <button class="sp-tab on" data-pane="home" type="button">首頁</button>
+          <button class="sp-tab" data-pane="mem" type="button">回憶牆</button>
+          <button class="sp-tab" data-pane="msg" type="button">留言板<span class="bdg" id="msgBdg" style="display:none"></span></button>
+          <button class="sp-tab" data-pane="cal" type="button">日曆</button>
+          <button class="sp-tab" data-pane="pet" type="button">我們的寵物</button>
+          <button class="sp-tab" data-pane="house" type="button">小房子</button>
+          <button class="sp-tab" data-pane="hut" type="button">心情小屋<span class="bdg" id="hutBdg" style="display:none"></span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap sp-body">
+      <!-- 首頁 -->
+      <div class="sp-pane on" id="pane-home">
+        <div id="intrudeBox"></div>
+        <div id="urgentBox"></div>
+        <div class="grid2">
+          <div class="card">
+            <h3>下一個重要日子</h3>
+            <div id="homeCount"><p class="mut">日曆裡還沒有未來的日子，去日曆加一個吧。</p></div>
+          </div>
+          <div class="card">
+            <h3>最近提醒</h3>
+            <div id="homeRemind"><p class="mut">目前沒有 3 天內的重要事項。</p></div>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="card">
+            <h3>寵物近況</h3>
+            <div id="homePet"><p class="mut">載入中…</p></div>
+          </div>
+          <div class="card">
+            <h3>心情小屋</h3>
+            <div id="homeHut"><p class="mut">載入中…</p></div>
+          </div>
+        </div>
+        <p class="sync-note" id="syncNote"></p>
+      </div>
+
+      <!-- 回憶牆 -->
+      <div class="sp-pane" id="pane-mem">
+        <div class="card">
+          <h3>新增回憶</h3>
+          <div class="field"><label for="memTitle">標題</label><input id="memTitle" placeholder="例如：第一次一起去看海" /></div>
+          <div class="field"><label for="memDate">日期</label><input id="memDate" type="date" /></div>
+          <div class="field"><label for="memText">想記下來的話</label><textarea id="memText" rows="3" placeholder="那天發生了什麼、你想對他說什麼…"></textarea></div>
+          <div class="field"><label for="memPhoto">照片（選填，會自動縮小）</label><input id="memPhoto" type="file" accept="image/*" /></div>
+          <button class="btn btn-pink" id="memAdd" type="button">放上回憶牆</button>
+        </div>
+        <div class="mem-grid" id="memGrid"></div>
+      </div>
+
+      <!-- 留言板 -->
+      <div class="sp-pane" id="pane-msg">
+        <div class="card">
+          <h3>留一句話</h3>
+          <div class="field"><textarea id="msgText" rows="3" placeholder="想跟對方說的話，或臨時有事要交代…"></textarea></div>
+          <label style="display:flex;gap:8px;align-items:center;min-height:2.25rem;font-weight:600">
+            <input type="checkbox" id="msgUrgent" style="width:20px;height:20px" /> 這是緊急事件（紅色置頂，直到對方按「我看到了」）
+          </label>
+          <button class="btn btn-pink" id="msgAdd" type="button" style="margin-top:8px">貼上留言板</button>
+        </div>
+        <div id="msgList"></div>
+      </div>
+
+      <!-- 日曆 -->
+      <div class="sp-pane" id="pane-cal">
+        <div class="card">
+          <h3>新增重要日子</h3>
+          <div class="field"><label for="evTitle">事項</label><input id="evTitle" placeholder="例如：交往紀念日、見面日、生日" /></div>
+          <div class="field"><label for="evDate">日期</label><input id="evDate" type="date" /></div>
+          <div class="field"><label for="evNote">備註（選填）</label><input id="evNote" placeholder="地點、要準備的東西…" /></div>
+          <button class="btn btn-pink" id="evAdd" type="button">加進日曆</button>
+          <p class="hint mut">日子到來前 3 天和當天，進空間首頁就會跳提醒。</p>
+        </div>
+        <div id="evList"></div>
+      </div>
+
+      <!-- 寵物 -->
+      <div class="sp-pane" id="pane-pet"><div id="petBox"></div></div>
+
+      <!-- 小房子 -->
+      <div class="sp-pane" id="pane-house">
+        <div class="card">
+          <h3>我們的小房子</h3>
+          <div class="room" id="roomBox">
+            <div class="motto-sign" id="roomMotto"></div>
+            <div class="room-items" id="roomItems"></div>
+            <div class="floor"></div>
+          </div>
+          <div class="field" style="margin-top:16px"><label>牆壁顏色</label>
+            <div class="toggle-row" id="wallRow"></div>
+          </div>
+          <div class="field"><label>家具（點一下放進／拿出房間，兩人都可以改）</label>
+            <div class="toggle-row" id="furnRow"></div>
+          </div>
+          <div class="field"><label for="mottoInput">牆上的話</label>
+            <div style="display:flex;gap:8px"><input id="mottoInput" style="flex:1" placeholder="例如：這裡是我們兩個人的家" /><button class="btn btn-pink" id="mottoSave" type="button">掛上牆</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 心情小屋 -->
+      <div class="sp-pane" id="pane-hut"><div id="hutBox"></div></div>
+    </div>
+  </div>
+
+  <!-- ================= 彈窗 ================= -->
+  <div class="modal-bk" id="courseModalBk">
+    <div class="modal wide" role="dialog" aria-modal="true">
+      <button class="x" data-close="courseModalBk" type="button" aria-label="關閉">✕</button>
+      <div id="courseDetail"></div>
+    </div>
+  </div>
+
+  <div class="modal-bk" id="partnerModalBk">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="x" data-close="partnerModalBk" type="button" aria-label="關閉">✕</button>
+      <div id="partnerBody"></div>
+    </div>
+  </div>
+
+  <div class="modal-bk" id="pwModalBk">
+    <div class="modal" role="dialog" aria-modal="true" style="max-width:420px">
+      <button class="x" data-close="pwModalBk" type="button" aria-label="關閉">✕</button>
+      <h2 class="serif">學員登入</h2>
+      <p class="sub">請輸入你的學員密碼，繼續未完成的課程。</p>
+      <div class="err" id="pwErr"></div>
+      <form id="pwForm" autocomplete="off">
+        <div class="field"><label for="pwInput">密碼</label><input id="pwInput" type="password" placeholder="請輸入密碼" /></div>
+        <button class="btn btn-accent" type="submit" style="width:100%">登入</button>
+      </form>
+      <p class="mut" style="margin-top:12px">忘記密碼請洽客服信箱，我們會協助你重設。</p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+/* ================= 課程資料 ================= */
+var INSTRUCTORS = [
+  {name:"林佳穎", init:"林", role:"生成式 AI 應用講師", bio:"前電商平台 AI 產品負責人，主導過客服機器人與個人化推薦上線，服務超過 300 萬使用者。擅長把模型能力翻譯成職場上真的用得到的流程。", nums:"開設 3 門課 · 累計 12,974 位學員 · 評分 4.9"},
+  {name:"陳志豪", init:"陳", role:"機器學習工程師", bio:"台大資工博士，曾任半導體大廠資深資料科學家，發表過 6 篇國際會議論文。專長是把論文方法落實成可維護的生產系統。", nums:"開設 3 門課 · 累計 9,965 位學員 · 評分 4.8"},
+  {name:"王曉婷", init:"王", role:"資料分析顧問", bio:"十年資料分析經驗，服務過零售、金融與媒體業客戶 40 家以上。相信好的分析不是圖做得多漂亮，而是能讓會議室裡的人做決定。", nums:"開設 2 門課 · 累計 6,851 位學員 · 評分 4.9"},
+  {name:"張家睿", init:"張", role:"電腦視覺工程師", bio:"前新創技術長，帶領團隊做出工廠瑕疵檢測與零售人流分析產品，模型在邊緣裝置上即時運行。專長 OpenCV 與模型輕量化。", nums:"開設 1 門課 · 1,988 位學員 · 評分 4.8"},
+  {name:"李佩珊", init:"李", role:"AI 產品經理", bio:"做過三款 AI 產品從 0 到 1，包含一款月活躍破百萬的寫作工具。專長需求訪談、指標設計與 AI 功能的成本估算。", nums:"開設 2 門課 · 累計 3,079 位學員 · 評分 4.8"},
+  {name:"劉冠廷", init:"劉", role:"雲端架構師", bio:"AWS 與 GCP 雙認證架構師，幫 20 家以上企業把模型服務搬上雲端並控制成本。專長容器化、GPU 排程與監控告警。", nums:"開設 1 門課 · 1,586 位學員 · 評分 4.7"}
+];
+var COURSES = [
+ {id:1, cat:"生成式 AI", title:"生成式 AI 完全入門：從聊天機器人到工作流自動化", inst:"林佳穎", level:"初級", price:1980, orig:3600, rating:4.9, ratings:1284, students:5214, updated:"2026 年 10 月",
+  desc:"不懂程式也能學會的生成式 AI 第一門課。從原理講起，帶你把 AI 用在寫作、簡報、客服回覆與日常行政，結業時完成一套自己的工作自動化流程。",
+  outcomes:["分得清生成式 AI 能做與不能做的事，不再被話術牽著走","會用結構化提示完成報告、信件、簡報大綱等 8 種常見任務","能把重複工作拆成步驟，設計成半自動流程","知道資料隱私紅線，哪些內容絕對不能貼給 AI"],
+  prereq:"不需要程式背景，會使用瀏覽器與文書軟體即可。",
+  audience:"行政、行銷、客服、人資等想提升效率的上班族，以及想先打底再進修的初學者。",
+  project:"期末專題：挑一件你每週重複做的工作，做成一套提示模板加操作手冊，附上節省時間的前後對照。",
+  chapters:[
+   {t:"第一章：生成式 AI 到底是什麼", goal:"建立正確心智模型，知道模型在「猜下一個字」，就知道它為什麼會一本正經地說錯話。", hw:"練習：用同一個問題問三種問法，記錄回答差異並寫 200 字心得。", lessons:[["生成式 AI 與傳統軟體的差別",18],["大型語言模型如何產生文字",24],["幻覺是什麼：模型說錯話的四種情境",21],["主流工具比較：聊天、寫作、繪圖、簡報",26]]},
+   {t:"第二章：提示的結構與基本功", goal:"學會用「角色、任務、素材、格式、限制」五段式寫提示，讓回答第一次就接近可用。", hw:"作業：把你最常用的一件工作寫成五段式提示，交出前後版本對照。", lessons:[["五段式提示框架",22],["給範例比給形容詞有效：少樣本提示",19],["讓 AI 先提問再回答",17],["輸出格式控制：表格、條列、字數與語氣",23]]},
+   {t:"第三章：職場八大應用實作", goal:"逐一實作報告、信件、會議紀錄、簡報、翻譯、腦力激盪、資料整理與客服回覆，每個都有可直接套用的模板。", hw:"作業：從八大應用挑兩個，用自己的工作素材各完成一份成品。", lessons:[["報告與公文信件",28],["會議紀錄與待辦整理",21],["簡報大綱與講稿",25],["客服回覆與客訴處理",24],["翻譯、在地化與語氣調整",20]]},
+   {t:"第四章：工作流自動化與風險", goal:"把單次提示串成流程，並學會查核、備份與個資紅線，讓自動化用得安心。", hw:"期末專題啟動：選題、拆解流程、列出查核點，繳交流程圖一張。", lessons:[["把重複工作拆成流程圖",20],["多步驟提示串接",26],["查核清單：數字、日期、人名怎麼驗",18],["個資與公司機密的紅線",16]]}]},
+ {id:2, cat:"程式設計", title:"Python 程式設計實戰：從零到寫出自己的工具", inst:"陳志豪", level:"初級", price:2480, orig:4200, rating:4.8, ratings:1102, students:4860, updated:"2026 年 9 月",
+  desc:"給完全初學者的 Python 課。不背語法，用 40 個小練習堆出能力，最後寫出批次改檔名、整理 Excel、爬公開資料三個真的用得上的工具。",
+  outcomes:["看得懂也寫得出條件、迴圈、函式與字典操作","會用檔案與套件處理 Excel、CSV 與文字資料","遇到錯誤訊息不慌張，知道怎麼一步步除錯","完成三個可放進作品集的實用小工具"],
+  prereq:"會基本電腦操作即可，不需要任何程式經驗。",
+  audience:"想轉職或幫工作自動化的上班族、學生，以及所有寫程式自學到一半就卡住的人。",
+  project:"期末專題：從自己的生活或工作找一個重複動作，寫成一個 Python 小工具並附使用說明。",
+  chapters:[
+   {t:"第一章：讓電腦聽你的話", goal:"裝好環境，理解變數、型別與輸入輸出，寫出第一支會跟使用者互動的程式。", hw:"練習：寫一支 BMI 計算器，能處理輸入錯誤不當機。", lessons:[["環境安裝與第一支程式",20],["變數與四種基本型別",26],["輸入、輸出與字串加工",24],["條件判斷：if 的思考方式",27]]},
+   {t:"第二章：重複的事交給迴圈", goal:"用迴圈與資料結構處理成批資料，這是自動化最核心的一章。", hw:"作業：讀入一份成績 CSV，算出平均、最高分與不及格名單。", lessons:[["for 與 while 迴圈",25],["清單與字典：裝資料的容器",29],["迴圈加條件的常見組合",23],["函式：把重複的步驟包起來",28]]},
+   {t:"第三章：檔案與真實資料", goal:"讀寫檔案、處理 Excel 與 CSV，並學會面對髒資料時的基本清理。", hw:"作業：把三份格式不一的訂單表合併成一份乾淨的總表。", lessons:[["讀寫文字與 CSV 檔",24],["用 openpyxl 處理 Excel",30],["資料清理：空白、重複與格式不一",27],["例外處理：檔案不存在怎麼辦",19]]},
+   {t:"第四章：做出三個實用工具", goal:"整合前面所學，完成批次改檔名、報表產生與公開資料擷取三個工具。", hw:"期末專題：自選題目寫一個工具，附 README 說明用途與用法。", lessons:[["工具一：批次改檔名與分類",26],["工具二：一鍵產生週報表",31],["工具三：擷取公開網頁資料",29],["打包與分享你的程式",18]]}]},
+ {id:3, cat:"機器學習", title:"機器學習核心實務：用 scikit-learn 做出預測模型", inst:"陳志豪", level:"中級", price:3980, orig:6800, rating:4.8, ratings:864, students:3120, updated:"2026 年 10 月",
+  desc:"不堆數學公式，從商業問題出發學機器學習：資料怎麼準備、模型怎麼選、效果怎麼驗證、結果怎麼跟主管解釋，全部用真實資料集實作。",
+  outcomes:["能把商業問題翻譯成分類、回歸或分群問題","會用 scikit-learn 完成特徵工程與模型訓練流程","看得懂混淆矩陣、AUC 等指標，不被單一準確率騙","能寫出一頁紙的模型評估報告給非技術主管看"],
+  prereq:"會 Python 基礎（變數、迴圈、函式）與基本 Excel 操作；統計概念課內會補。",
+  audience:"資料分析師、工程師與產品經理，想在工作上真正用起預測模型的人。",
+  project:"期末專題：自選一個公開資料集，完成從資料清理到模型評估的完整報告與程式碼。",
+  chapters:[
+   {t:"第一章：機器學習的問題地圖", goal:"先分清楚監督、非監督與問題類型，避免一開始就選錯工具。", hw:"練習：把五個生活情境各歸類成正確的問題類型並說明理由。", lessons:[["分類、回歸、分群怎麼分",22],["訓練資料與測試資料",20],["過擬合：模型背答案的危險",24],["評估指標總覽",26]]},
+   {t:"第二章：資料準備與特徵工程", goal:"模型上限由資料決定。這章教你清理、編碼與縮放，做出能餵給模型的資料表。", hw:"作業：把一份含缺失與類別欄位的資料整理成可訓練格式。", lessons:[["缺失值與異常值處理",27],["類別欄位編碼",23],["特徵縮放與轉換",21],["特徵選擇：不是越多越好",25]]},
+   {t:"第三章：常用模型實作", goal:"實作邏輯迴歸、決策樹、隨機森林與梯度提升，理解各自適合的場景。", hw:"作業：同一個資料集跑四種模型，用交叉驗證比較並選出最佳者。", lessons:[["邏輯迴歸與決策樹",30],["隨機森林與梯度提升",32],["超參數調整的方法",26],["不平衡資料的處理",24]]},
+   {t:"第四章：驗證、解釋與交付", goal:"用正確的驗證方式估計真實表現，並把模型結果講成人話。", hw:"期末專題：繳交模型報告，含指標、限制與下一步建議。", lessons:[["交叉驗證實務",23],["混淆矩陣與 AUC 判讀",25],["特徵重要性與模型解釋",24],["寫給主管的一頁報告",19]]}]},
+ {id:4, cat:"深度學習", title:"深度學習與神經網路：PyTorch 實作班", inst:"陳志豪", level:"進階", price:4980, orig:8800, rating:4.7, ratings:593, students:1985, updated:"2026 年 8 月",
+  desc:"從感知器到 CNN 與 Transformer 概念，用 PyTorch 一步步搭出影像分類與文字分類模型，並學會看訓練曲線判斷問題出在哪。",
+  outcomes:["理解反向傳播與梯度下降在做什麼，不再當黑箱用","會用 PyTorch 搭建、訓練與儲存模型","能從 loss 曲線判斷過擬合、學習率與資料問題","完成一個可部署的影像分類模型"],
+  prereq:"會 Python 與機器學習基本概念（訓練/測試切分、過擬合）。",
+  audience:"想深入模型原理的工程師與研究生，以及準備往 AI 工程職涯發展的人。",
+  project:"期末專題：自選影像或文字資料，訓練一個模型並繳交訓練紀錄分析。",
+  chapters:[
+   {t:"第一章：神經網路的地基", goal:"從感知器、多層網路到反向傳播，把黑箱拆開看懂。", hw:"練習：用 NumPy 手刻一個兩層網路解 XOR 問題。", lessons:[["感知器與多層網路",28],["激活函數與損失函數",26],["梯度下降與反向傳播",34],["用 PyTorch 重做一次",27]]},
+   {t:"第二章：訓練的實務技巧", goal:"學習率、批次、正規化與資料增強——決定模型成敗的細節都在這章。", hw:"作業：同一資料集做三組超參數對照，分析曲線差異。", lessons:[["學習率與優化器",25],["正規化：Dropout 與 BatchNorm",27],["資料增強策略",24],["看懂訓練曲線",23]]},
+   {t:"第三章：CNN 影像模型", goal:"理解卷積與池化，實作一個能分辨日常物體的影像分類器。", hw:"作業：用遷移學習在自選小資料集上達到可用準確率。", lessons:[["卷積與池化的直覺",29],["經典 CNN 架構巡禮",28],["遷移學習實作",31],["模型輕量化入門",22]]},
+   {t:"第四章：序列與注意力概念", goal:"從 RNN 到注意力機制，建立理解大型語言模型的基礎。", hw:"期末專題：繳交模型、程式碼與一頁訓練分析。", lessons:[["序列資料與 RNN",27],["注意力機制直覺",30],["Transformer 架構導覽",32],["文字分類實作",26]]}]},
+ {id:5, cat:"自然語言", title:"自然語言處理與大型語言模型應用開發", inst:"林佳穎", level:"中級", price:4580, orig:7600, rating:4.9, ratings:742, students:2654, updated:"2026 年 10 月",
+  desc:"教你把大型語言模型接進自己的產品：API 串接、RAG 文件問答、對話狀態管理與成本控制，做一個真的能回答公司文件問題的助理。",
+  outcomes:["會串接語言模型 API 並處理串流與錯誤重試","能用向量搜尋加 RAG 做出文件問答系統","知道怎麼評估回答品質，而不是憑感覺","會估算並控制 token 成本"],
+  prereq:"會 Python 基礎，能看懂簡單的 API 文件。",
+  audience:"想把 AI 功能做進產品的工程師、產品經理與新創團隊。",
+  project:"期末專題：用自己的文件集做一個問答助理，附品質評估表與成本估算。",
+  chapters:[
+   {t:"第一章：語言模型 API 實務", goal:"從第一支呼叫開始，掌握訊息結構、參數與串流回應。", hw:"練習：寫一支能摘要任意長文的程式，處理超長輸入。", lessons:[["API 串接與金鑰管理",24],["訊息角色與上下文",22],["溫度與輸出長度參數",20],["串流回應與錯誤處理",26]]},
+   {t:"第二章：提示工程進階", goal:"結構化輸出、思維鏈與自我檢查，讓模型輸出能直接被程式使用。", hw:"作業：設計一個把客訴信轉成結構化 JSON 的提示並驗證 20 筆。", lessons:[["結構化輸出與 JSON 模式",25],["思維鏈與分步推理",23],["提示模板與版本管理",21],["常見失敗模式與修法",24]]},
+   {t:"第三章：RAG 文件問答", goal:"把文件切塊、向量化、搜尋再回答，做出有出處的問答系統。", hw:"作業：用一份產品手冊做問答助理，回答須附引用段落。", lessons:[["文件切塊策略",26],["向量與嵌入的概念",25],["向量搜尋實作",28],["引用與拒答設計",24]]},
+   {t:"第四章：評估與成本", goal:"建立評估集、量測品質，並學會用快取與模型分級壓低成本。", hw:"期末專題：繳交問答助理、評估報告與月成本試算表。", lessons:[["建立黃金評估集",24],["自動與人工評估",23],["快取與批次處理",21],["模型分級與成本試算",22]]}]},
+ {id:6, cat:"電腦視覺", title:"電腦視覺實戰：從影像處理到物件偵測", inst:"張家睿", level:"中級", price:4280, orig:7200, rating:4.8, ratings:517, students:1988, updated:"2026 年 9 月",
+  desc:"用 OpenCV 與 YOLO 做真實專案：人流計算、文件掃描校正、瑕疵檢測。每章都以一個能展示的成品收尾，而不是只跑範例程式。",
+  outcomes:["會用 OpenCV 做影像前處理與特徵擷取","能訓練並部署一個 YOLO 物件偵測模型","知道資料標記的品質如何決定模型上限","完成一個即時攝影機偵測應用"],
+  prereq:"會 Python 基礎與檔案操作；機器學習概念有基本認識即可。",
+  audience:"製造業、零售業工程師與想走視覺應用的開發者。",
+  project:"期末專題：自選場景做物件偵測應用，繳交展示影片與準確率報告。",
+  chapters:[
+   {t:"第一章：影像處理基本功", goal:"理解像素、色彩空間與濾波，能把模糊歪斜的照片整理成可用輸入。", hw:"練習：把一批歪斜文件照自動校正並裁切。", lessons:[["影像的數位表示",22],["色彩空間與二值化",24],["濾波與邊緣偵測",26],["透視校正實作",25]]},
+   {t:"第二章：傳統視覺方法", goal:"在深度學習之前，先學會用特徵與幾何解決一半的問題。", hw:"作業：用模板比對做一個簡易的標誌定位器。", lessons:[["特徵點與匹配",27],["模板比對與形狀分析",24],["攝影機校正概念",23],["人流計算案例",26]]},
+   {t:"第三章：物件偵測實作", goal:"用 YOLO 完成資料標記、訓練與推論的完整流程。", hw:"作業：標記 200 張自選圖片並訓練第一版模型。", lessons:[["偵測任務與資料格式",25],["標記工具與品質控管",24],["YOLO 訓練實作",33],["評估 mAP 與錯誤分析",27]]},
+   {t:"第四章：即時應用與部署", goal:"把模型接到攝影機與邊緣裝置，做到即時又穩定。", hw:"期末專題：繳交即時偵測展示與效能數據。", lessons:[["Webcam 即時推論",26],["效能優化與幀率",24],["邊緣裝置部署",28],["告警與紀錄整合",22]]}]},
+ {id:7, cat:"資料分析", title:"資料分析與視覺化：從 Excel 到互動儀表板", inst:"王曉婷", level:"初級", price:2980, orig:5200, rating:4.9, ratings:986, students:3977, updated:"2026 年 10 月",
+  desc:"給非工程背景的分析課。用真實銷售與行銷資料，教你清理、樞紐、畫對圖，並把結論做成主管三分鐘看懂的儀表板。",
+  outcomes:["會用樞紐分析快速回答「哪個產品、哪個月份」類問題","分得清該用長條、折線還是散佈圖，不再用錯圖誤導人","能清理重複、缺失與格式混亂的真實資料","做出一個會自動更新的儀表板"],
+  prereq:"會 Excel 基本操作（加總、排序、篩選）即可。",
+  audience:"行銷、業務、營運與行政人員，想讓報告從貼數字變成有結論。",
+  project:"期末專題：選一份自己工作或公開的資料，做一頁儀表板加三點結論。",
+  chapters:[
+   {t:"第一章：分析的思考順序", goal:"先問對問題再碰資料：指標、維度與比較基準的思考框架。", hw:"練習：把五個模糊需求改寫成可分析的問題。", lessons:[["從需求到問題定義",21],["指標與維度的區別",23],["比較基準：跟誰比才有意義",22],["常見的數字陷阱",24]]},
+   {t:"第二章：資料清理實務", goal:"真實資料有八成時間花在清理。這章把常見髒法一次練完。", hw:"作業：清理一份 3,000 列的訂單資料並寫清理紀錄。", lessons:[["重複與缺失值",25],["日期與金額格式統一",23],["分類欄位的髒法",24],["清理紀錄怎麼留",18]]},
+   {t:"第三章：樞紐與圖表", goal:"用樞紐分析切出洞察，並學會每種問題該配哪種圖。", hw:"作業：同一份資料做四種圖，選出最能回答問題的一張並說明。", lessons:[["樞紐分析進階",27],["長條、折線、散佈的選圖原則",25],["圖表誤導的八種手法",22],["配色與標註的細節",20]]},
+   {t:"第四章：儀表板與簡報", goal:"把分析做成會自動更新的儀表板，並用一頁講完結論。", hw:"期末專題：繳交儀表板與三分鐘口頭報告錄影或文字稿。", lessons:[["儀表板版面設計",24],["自動更新的資料流程",26],["一頁式結論寫法",21],["回答主管追問的準備",19]]}]},
+ {id:8, cat:"生成式 AI", title:"ChatGPT 與提示工程實務：把 AI 變成你的部屬", inst:"林佳穎", level:"初級", price:2280, orig:3900, rating:4.9, ratings:1351, students:5106, updated:"2026 年 11 月",
+  desc:"入門課的進階版：不只會下提示，還要會管理提示資產、設計審核流程，讓整個團隊用 AI 的產出品質穩定一致。",
+  outcomes:["建立個人與團隊共用的提示模板庫","會設計「AI 初稿加人工審核」的工作流程","能針對寫作、企劃、程式三種場景調校語氣與深度","知道如何驗證 AI 給的數據與引用"],
+  prereq:"用過任何聊天式 AI 工具兩週以上即可。",
+  audience:"已經在用 AI 但產出品質不穩定的上班族與小團隊主管。",
+  project:"期末專題：為你的團隊做一套提示模板庫加審核清單，實際運行一週並記錄改善。",
+  chapters:[
+   {t:"第一章：從聊天到下指令", goal:"把隨意聊天升級成可重複的指令：背景、限制與驗收標準一次交代清楚。", hw:"練習：把三個你常用的隨意問法改寫成可重複指令。", lessons:[["指令與聊天的差別",19],["驗收標準怎麼寫",21],["讓 AI 扮演審稿者",22],["多輪對話的管理",20]]},
+   {t:"第二章：三大場景調校", goal:"寫作、企劃與程式輔助各有不同的提示節奏，逐一拆解。", hw:"作業：三個場景各交一份成品與所用提示。", lessons:[["寫作：大綱、初稿、潤稿",26],["企劃：發散與收斂",25],["程式輔助：解釋與除錯",27],["會議與簡報場景",22]]},
+   {t:"第三章：模板庫與團隊流程", goal:"把好提示留下來變成資產，設計團隊共用與審核機制。", hw:"作業：建立至少 8 張模板卡，含使用時機與注意事項。", lessons:[["模板卡的格式設計",21],["團隊共用與版本",20],["AI 初稿的審核清單",23],["品質不穩的排查",22]]},
+   {t:"第四章：查證與進階技巧", goal:"學會查證數據與引用，並用檔案上傳與資料分析功能處理真實文件。", hw:"期末專題：繳交模板庫、審核清單與一週運行紀錄。", lessons:[["數據與引用的查證法",22],["上傳檔案的分析流程",24],["長文件分段處理",23],["自訂指令與記憶設定",20]]}]},
+ {id:9, cat:"產品企劃", title:"AI 產品經理實戰班：從點子到上線評估", inst:"李佩珊", level:"中級", price:3680, orig:6200, rating:4.8, ratings:438, students:1932, updated:"2026 年 9 月",
+  desc:"AI 產品最容易死在「做得出來但沒人用、成本算不回來」。這門課帶你走完需求、原型、指標與成本的完整決策流程。",
+  outcomes:["會判斷一個 AI 點子該做、緩做還是不做","能設計 AI 功能的成功指標與失敗備案","會估算推論成本並做定價試算","能主導一次 AI 功能的使用者測試"],
+  prereq:"有一年以上產品、企劃或營運經驗尤佳，新手可先修入門課。",
+  audience:"產品經理、企劃與新創創辦人，想把 AI 做進產品而不是做簡報。",
+  project:"期末專題：繳交一份完整的 AI 功能企劃書，含指標、成本與風險備案。",
+  chapters:[
+   {t:"第一章：AI 產品的機會判斷", goal:"用「頻率乘痛感乘可行性」評估點子，避開炫技型功能。", hw:"練習：評估三個 AI 點子並各寫一頁判斷書。", lessons:[["AI 適合解決的問題長相",22],["可行性：資料與模型現實",24],["競品與替代方案分析",23],["不做的決策怎麼寫",20]]},
+   {t:"第二章：原型與使用者測試", goal:"用最低成本驗證價值：假門測試、精靈法與提示原型。", hw:"作業：用精靈法跑 5 位使用者測試並整理發現。", lessons:[["低保真原型的方法",24],["精靈法測試實務",26],["測試任務設計",22],["從回饋分出真需求",23]]},
+   {t:"第三章：指標與品質", goal:"AI 功能不能只看使用量，還要看採納率、修正率與信任感。", hw:"作業：為一個 AI 功能設計指標樹與警戒值。", lessons:[["AI 功能的指標樹",25],["採納率與修正率",23],["錯誤案例的分類管理",24],["灰度上線與回滾",22]]},
+   {t:"第四章：成本與商業模式", goal:"把 token、基礎設施與人力成本算清楚，定價才站得住。", hw:"期末專題：繳交企劃書並做 8 分鐘口頭報告（文字版可）。", lessons:[["推論成本估算",24],["定價模式比較",23],["成本失控的預警設計",21],["企劃書的完整結構",25]]}]},
+ {id:10, cat:"工程實務", title:"MLOps：模型部署與維運實戰", inst:"劉冠廷", level:"進階", price:5280, orig:9200, rating:4.7, ratings:356, students:1586, updated:"2026 年 8 月",
+  desc:"模型在本機跑得好只是開始。這門課教你容器化、API 服務、監控告警與版本管理，讓模型在線上穩定活著而且成本可控。",
+  outcomes:["會把模型包成容器並部署成 API 服務","能設計健康檢查、監控與告警流程","理解資料漂移與模型退化的偵測方法","會做 GPU 與推論成本的優化取捨"],
+  prereq:"會 Python 與機器學習基礎，碰過命令列尤佳。",
+  audience:"機器學習工程師與後端工程師，負責把模型送上線的人。",
+  project:"期末專題：把一個開源模型部署成有監控的線上服務，繳交架構圖與維運手冊。",
+  chapters:[
+   {t:"第一章：從筆記本到服務", goal:"把實驗程式整理成可部署的服務：套件管理、設定與日誌。", hw:"練習：把一個訓練好的模型整理成標準專案結構。", lessons:[["專案結構與設定管理",24],["用 FastAPI 包裝模型",28],["環境與相依性管理",23],["日誌與錯誤追蹤",22]]},
+   {t:"第二章：容器與部署", goal:"用 Docker 打包並部署，理解擴展與 GPU 的基本取捨。", hw:"作業：把服務包成映像並在本機與雲端各部署一次。", lessons:[["Docker 映像實作",29],["部署策略與版本",25],["自動擴展概念",24],["GPU 使用與排程",26]]},
+   {t:"第三章：監控與告警", goal:"服務活著不夠，還要知道它何時開始變差。", hw:"作業：為服務加上三個關鍵指標與告警規則。", lessons:[["要監控的關鍵指標",24],["資料漂移偵測",27],["模型退化處理",25],["事故應變流程",22]]},
+   {t:"第四章：成本與優化", goal:"在品質不掉的前提下，把推論成本壓下來。", hw:"期末專題：繳交部署架構、監控畫面與維運手冊。", lessons:[["成本結構拆解",23],["批次與快取策略",25],["模型壓縮與蒸餾概念",26],["容量規劃",21]]}]},
+ {id:11, cat:"創作應用", title:"AI 繪圖與多媒體創作：社群與簡報素材實戰", inst:"王曉婷", level:"初級", price:2180, orig:3800, rating:4.8, ratings:693, students:2874, updated:"2026 年 10 月",
+  desc:"給行銷與創作者的繪圖實戰：構圖提示、風格一致性、人物連續性與商用授權判斷，做出整套風格統一的社群素材。",
+  outcomes:["會用構圖與光影詞彙精準描述想要的画面","能維持同一角色與品牌風格連續產圖","知道商用授權與肖像權的界線","完成一組 9 張風格統一的社群素材"],
+  prereq:"不需要繪畫基礎，會基本圖片編輯尤佳。",
+  audience:"社群小編、行銷人員、設計助理與個人品牌經營者。",
+  project:"期末專題：為一個品牌做整套社群素材，含風格指南一頁。",
+  chapters:[
+   {t:"第一章：繪圖工具與提示結構", goal:"理解繪圖模型的提示邏輯：主體、環境、構圖、光影、風格五層描述。", hw:"練習：同一個主題用五層結構各產三張並比較。", lessons:[["工具比較與選型",21],["五層提示結構",24],["構圖與鏡頭詞彙",23],["光影與色調控制",22]]},
+   {t:"第二章：風格一致性", goal:"讓每一張圖看起來出自同一套設計：色票、參考圖與參數固定法。", hw:"作業：建立一個品牌的風格板並產出 6 張素材。", lessons:[["色票與視覺識別",23],["參考圖與種子參數",25],["角色連續性技巧",26],["批次產圖流程",22]]},
+   {t:"第三章：修圖與後製", goal:"AI 產圖常有小瑕疵，學會局部重繪、擴圖與合成修補。", hw:"作業：挑三張有瑕疵的圖修到可商用品質。", lessons:[["局部重繪與修補",24],["擴圖與解析度提升",22],["與照片合成",25],["交付前的檢查清單",19]]},
+   {t:"第四章：商用與授權", goal:"搞懂各平台授權條款、肖像與商標風險，安心把圖用在工作上。", hw:"期末專題：繳交素材組與風格指南，附授權來源說明。", lessons:[["平台授權條款重點",22],["肖像權與商標風險",21],["素材管理與備份",20],["結業作品發表",18]]}]},
+ {id:12, cat:"企業策略", title:"企業 AI 轉型策略：給主管的導入決策課", inst:"李佩珊", level:"中級", price:5980, orig:9800, rating:4.8, ratings:289, students:1147, updated:"2026 年 7 月",
+  desc:"不談技術細節，談決策：哪些流程先導入、預算怎麼編、資安怎麼把關、成效怎麼驗收。附三個台灣企業的完整導入案例拆解。",
+  outcomes:["會用影響力與可行性矩陣排定導入優先序","能編列含隱藏成本的 AI 預算","知道資安與法遵的把關清單要問哪些問題","能設計三個月試點的驗收標準"],
+  prereq:"需具備團隊管理或預算決策經驗。",
+  audience:"部門主管、中小企業主與負責數位轉型的幕僚。",
+  project:"期末專題：為自己的部門寫一份三個月 AI 試點計畫，含預算與驗收表。",
+  chapters:[
+   {t:"第一章：轉型的地圖", goal:"先看懂全景：生成式 AI 對流程、人力與競爭的實際影響範圍。", hw:"練習：盤點自己部門十個流程並標記 AI 可介入程度。", lessons:[["影響範圍盤點",23],["優先序矩陣",25],["常見的轉型誤區",22],["案例：製造業導入拆解",27]]},
+   {t:"第二章：預算與廠商", goal:"把授權、整合、訓練與維護的隱藏成本算進去，並學會評估廠商。", hw:"作業：為一個導入情境編完整預算表。", lessons:[["成本結構全清單",24],["自建與採購的判斷",25],["廠商評估問題集",23],["案例：零售業導入拆解",26]]},
+   {t:"第三章：資安與治理", goal:"資料分級、使用規範與稽核，讓法遵與資安單位點頭。", hw:"作業：起草一份部門 AI 使用規範。", lessons:[["資料分級與紅線",24],["使用規範的設計",23],["稽核與紀錄",21],["案例：金融業導入拆解",26]]},
+   {t:"第四章：試點與擴散", goal:"用三個月試點證明價值，再談全面推廣與變革溝通。", hw:"期末專題：繳交試點計畫與驗收表，做小組互評。", lessons:[["試點的選題與驗收",25],["成效量測方法",23],["員工溝通與抗拒處理",24],["擴散路線圖",22]]}]}
+];
+var REVIEWS = [
+  {name:"周怡君", course:"生成式 AI 完全入門", stars:5, date:"2026 年 10 月", text:"我是行政人員，原本很怕這種課會一堆術語。結果每章都用工作情境帶，第四週我就把每月的例行公文做成模板，現在每月省下大概六小時。作業都有被批改，不是丟著不管那種。"},
+  {name:"黃冠霖", course:"Python 程式設計實戰", stars:5, date:"2026 年 9 月", text:"自學 Python 失敗過兩次，這次終於學完。關鍵是練習量夠多，而且錯誤訊息那幾堂講得很細，現在看 traceback 不會慌了。期末做的報表工具真的還在公司用。"},
+  {name:"蔡佩蓉", course:"資料分析與視覺化", stars:5, date:"2026 年 10 月", text:"最有感的是選圖那章。以前做月報都貼一堆圓餅圖被主管打槍，學完知道問題在哪。上個月用新的儀表板報告，第一次被問「這是你做的？」值得。"},
+  {name:"吳承翰", course:"自然語言處理與大型語言模型應用開發", stars:4, date:"2026 年 8 月", text:"RAG 那章救了我們團隊的客服文件問答專案，引用與拒答的設計之前完全沒想到。扣一星是希望進階的評估部分可以再多一點實作時間，內容本身沒問題。"},
+  {name:"鄭雅雯", course:"AI 繪圖與多媒體創作", stars:5, date:"2026 年 10 月", text:"經營小店的 IG 兩年，素材一直是弱項。學完風格一致性之後，整組圖看起來終於像同一個品牌。老師對商用授權講得很清楚，這點很多免費教學都不提。"},
+  {name:"許志明", course:"企業 AI 轉型策略", stars:5, date:"2026 年 7 月", text:"帶著部門的實際問題來上，期末計畫直接變成我們公司的試點提案，已經通過預算。案例拆解不打高空，連廠商話術怎麼拆都有教，很務實。"}
+];
+var FAQS = [
+  {q:"課程是直播還是預錄？可以看多久？", a:"全部課程皆為預錄影音，購買後立即開通、終身觀看，包含講師後續的版本更新。我們建議照章節順序學習，並在每章結束後完成作業，效果最好。"},
+  {q:"學完會有證書嗎？", a:"完成全部章節與期末專題並通過評核後，可取得電子結業證書，含課程名稱、完課日期與專題主題，可下載 PDF 並附於履歷或 LinkedIn。"},
+  {q:"不會寫程式可以上嗎？", a:"可以。標示「初級」的課程（生成式 AI 入門、提示工程實務、資料分析、AI 繪圖）都不需要程式背景；需要 Python 的課程會在介紹頁的先修要求中明確標示。"},
+  {q:"退費政策是什麼？", a:"購買後 14 天內、觀看進度未超過 20%，可全額退費。超過後依觀看比例與消費者保護法相關規定處理，申請方式在會員中心的訂單頁面。"},
+  {q:"公司或學校可以團體報名嗎？", a:"可以。5 人以上團體報名享 85 折並可開立統編發票，另有企業內訓與專班規劃，請透過頁尾的合作申請與我們聯繫。"},
+  {q:"課程有問題要問講師怎麼辦？", a:"每堂課下方都有討論區，講師與助教在兩個工作天內回覆。進階課程另含每月一次的線上 office hour，可直接報名參加。"}
+];
+function courseTotals(c){ var l=0,m=0; c.chapters.forEach(function(ch){ l+=ch.lessons.length; ch.lessons.forEach(function(x){ m+=x[1]; }); }); return {lessons:l, hours:(m/60).toFixed(1)}; }
+</script>
+
+<script>
+/* ================= 工具 ================= */
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function toast(msg){ var t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(function(){ t.classList.remove("show"); },2600); }
+function fmtDate(ts){ var d=new Date(ts); return d.getFullYear()+"/"+(d.getMonth()+1)+"/"+d.getDate()+" "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0"); }
+function dayDiff(dateStr){ var t=new Date(); t.setHours(0,0,0,0); var d=new Date(dateStr+"T00:00:00"); return Math.round((d-t)/86400000); }
+function openBk(id){ $(id).classList.add("open"); }
+function closeBk(id){ $(id).classList.remove("open"); }
+document.querySelectorAll("[data-close]").forEach(function(b){ b.addEventListener("click", function(){ closeBk(b.getAttribute("data-close")); }); });
+
+/* ================= 加密（AES-GCM，鑰匙由登入密碼推導） ================= */
+function b64enc(buf){ var u=new Uint8Array(buf), s=""; for(var i=0;i<u.length;i++) s+=String.fromCharCode(u[i]); return btoa(s); }
+function b64dec(s){ var bin=atob(s), u=new Uint8Array(bin.length); for(var i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i); return u.buffer; }
+async function sha256hex(str){ var h=await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str)); return Array.from(new Uint8Array(h)).map(function(x){ return x.toString(16).padStart(2,"0"); }).join(""); }
+async function deriveKey(pw, saltB64){ var base=await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"]); return crypto.subtle.deriveKey({name:"PBKDF2", salt:new Uint8Array(b64dec(saltB64)), iterations:120000, hash:"SHA-256"}, base, {name:"AES-GCM", length:256}, false, ["encrypt","decrypt"]); }
+async function encJSON(key, obj){ var iv=crypto.getRandomValues(new Uint8Array(12)); var ct=await crypto.subtle.encrypt({name:"AES-GCM", iv:iv}, key, new TextEncoder().encode(JSON.stringify(obj))); var all=new Uint8Array(12+ct.byteLength); all.set(iv,0); all.set(new Uint8Array(ct),12); return b64enc(all.buffer); }
+async function decJSON(key, b64){ var all=new Uint8Array(b64dec(b64)); var pt=await crypto.subtle.decrypt({name:"AES-GCM", iv:all.slice(0,12)}, key, all.slice(12)); return JSON.parse(new TextDecoder().decode(pt)); }
+
+/* ================= 儲存：遠端同步保險箱（內容皆為密文）＋本機備援 ================= */
+var BLOB_API="https://jsonblob.com/api/jsonBlob";
+var PTR=null, VAULT=null, DATA=null, KEY=null, ROLE=null, LOCAL_VAULT=null, inSpace=false;
+try{ PTR=JSON.parse(localStorage.getItem("aixy_ptr_v1")||"null"); }catch(e){ PTR=null; }
+function savePtr(){ try{ if(PTR) localStorage.setItem("aixy_ptr_v1", JSON.stringify(PTR)); }catch(e){} }
+async function blobCreate(obj){ var r=await fetch(BLOB_API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(obj)}); if(!r.ok) throw new Error("create failed"); var loc=r.headers.get("Location")||""; var id=loc.split("/").pop(); if(!id) throw new Error("no id"); return id; }
+async function blobGet(id){ var r=await fetch(BLOB_API+"/"+id); if(!r.ok) throw new Error("get failed"); return r.json(); }
+async function blobPut(id,obj){ var r=await fetch(BLOB_API+"/"+id,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(obj)}); if(!r.ok) throw new Error("put failed"); }
+async function ensureVault(){ if(VAULT||!PTR) return VAULT; if(PTR.mode==="local"){ VAULT=LOCAL_VAULT; return VAULT; } VAULT=await blobGet(PTR.id); return VAULT; }
+async function saveVault(){ if(!PTR) return; if(PTR.mode==="local"){ LOCAL_VAULT=VAULT; return; } try{ await blobPut(PTR.id, VAULT); }catch(e){ toast("同步失敗，請確認網路後再操作一次"); } }
+async function saveData(){ VAULT.data=await encJSON(KEY, DATA); await saveVault(); }
+function defaultData(names){ return { names:names, memories:[], messages:[], events:[], pet:{step:0,species:null,colour:null,colourName:null,personality:null,name:null,accessory:null,welcomed:{a:false,b:false},born:false,hearts:0}, house:{wall:0,items:{},motto:"這裡是我們兩個人的家"}, hut:{stage:"empty"} }; }
+function otherRole(){ return ROLE==="a" ? "b" : "a"; }
+function myName(){ return DATA.names[ROLE]; }
+function otherName(){ return DATA.names[otherRole()]; }
+
+/* ================= 課程站渲染 ================= */
+var curCat="全部", curQuery="";
+function renderCats(){ var cats=["全部"]; COURSES.forEach(function(c){ if(cats.indexOf(c.cat)<0) cats.push(c.cat); }); $("catRow").innerHTML=cats.map(function(c){ return '<button type="button" class="cat-chip'+(c===curCat?" on":"")+'" data-cat="'+esc(c)+'">'+esc(c)+"</button>"; }).join(""); document.querySelectorAll(".cat-chip").forEach(function(b){ b.addEventListener("click", function(){ curCat=b.getAttribute("data-cat"); renderCats(); renderCourses(); }); }); }
+function renderCourses(){ var list=COURSES.filter(function(c){ var okC=curCat==="全部"||c.cat===curCat; var q=curQuery.trim().toLowerCase(); var okQ=!q||(c.title+" "+c.cat+" "+c.inst+" "+c.desc).toLowerCase().indexOf(q)>=0; return okC&&okQ; });
+  $("courseCount").textContent="共 "+list.length+" 門課";
+  $("courseGrid").innerHTML=list.length? list.map(function(c){ var t=courseTotals(c); return '<button type="button" class="course-card" data-cid="'+c.id+'"><span class="cc-top"><span class="cc-cat">'+esc(c.cat)+" · "+esc(c.level)+'</span><h3>'+esc(c.title)+'</h3><p>'+esc(c.desc)+'</p></span><span class="cc-meta"><span class="cc-rate"><span class="star">★</span> '+c.rating+'（'+c.ratings.toLocaleString()+'）</span><span>'+t.lessons+' 堂課 · '+t.hours+' 小時</span><span>'+c.students.toLocaleString()+' 位學員</span></span><span class="cc-foot"><span class="price"><b>NT$ '+c.price.toLocaleString()+'</b><s>NT$ '+c.orig.toLocaleString()+'</s></span><span class="cc-open">查看大綱 →</span></span></button>'; }).join("") : '<div class="no-result">找不到符合的課程，換個關鍵字試試，或看看課程總覽。</div>';
+  document.querySelectorAll(".course-card").forEach(function(el){ el.addEventListener("click", function(){ openCourse(parseInt(el.getAttribute("data-cid"),10)); }); }); }
+function openCourse(id){ var c=COURSES.filter(function(x){ return x.id===id; })[0]; if(!c) return; var t=courseTotals(c);
+  var chaps=c.chapters.map(function(ch,i){ return '<div class="chap"><div class="chap-h"><b>第'+(i+1)+'章 '+esc(ch.t.replace(/^第.章：/,""))+'</b><div class="goal">章節目標：'+esc(ch.goal)+'</div></div><ul>'+ch.lessons.map(function(l){ return "<li><span>"+esc(l[0])+'</span><span class="mins">'+l[1]+' 分鐘</span></li>'; }).join("")+'</ul><div class="hw">本章實作：'+esc(ch.hw)+"</div></div>"; }).join("");
+  $("courseDetail").innerHTML='<div class="cd-head"><span class="cc-cat">'+esc(c.cat)+" · "+esc(c.level)+'</span><h2>'+esc(c.title)+'</h2><p class="sub" style="margin:0">講師：'+esc(c.inst)+' ｜ ★ '+c.rating+"（"+c.ratings.toLocaleString()+' 則評分）｜ '+c.students.toLocaleString()+' 位學員 ｜ 最後更新：'+esc(c.updated)+'</p><p style="color:var(--ink2)">'+esc(c.desc)+"</p></div>"
+   +'<div class="cd-grid"><div><h3 style="margin:0 0 10px">課程大綱</h3>'+chaps
+   +'<h3 style="margin:16px 0 6px">學完你會</h3><ul class="chip-list">'+c.outcomes.map(function(o){ return "<li>"+esc(o)+"</li>"; }).join("")+"</ul>"
+   +'<p class="kv" style="margin-top:14px"><b>適合對象：</b>'+esc(c.audience)+'</p><p class="kv"><b>先修要求：</b>'+esc(c.prereq)+'</p><p class="kv"><b>期末專題：</b>'+esc(c.project)+"</p></div>"
+   +'<aside class="side-box"><div class="price"><b>NT$ '+c.price.toLocaleString()+'</b><s>NT$ '+c.orig.toLocaleString()+'</s></div><dl><dt>課程長度</dt><dd>'+t.lessons+" 堂課 · 共 "+t.hours+' 小時</dd><dt>觀看期限</dt><dd>終身觀看，含更新</dd><dt>結業證書</dt><dd>完成專題後核發</dd><dt>退費</dt><dd>14 天內、進度未逾 20% 全額退</dd></dl><button class="btn btn-accent" type="button" style="width:100%;margin-top:14px" onclick="toast(\'示範頁面：報名功能未開放\')">加入購物車</button></aside></div>';
+  openBk("courseModalBk"); }
+function renderInst(){ $("instGrid").innerHTML=INSTRUCTORS.map(function(p){ return '<div class="inst-card"><div class="ava">'+esc(p.init)+'</div><h3>'+esc(p.name)+'</h3><div class="role">'+esc(p.role)+'</div><p>'+esc(p.bio)+'</p><div class="nums">'+esc(p.nums)+"</div></div>"; }).join(""); }
+function renderReviews(){ $("revList").innerHTML=REVIEWS.map(function(r){ var st=""; for(var i=0;i<5;i++) st+= i<r.stars?"★":"☆"; return '<div class="rev-card"><div class="who"><b>'+esc(r.name)+'</b><span>'+esc(r.course)+'</span><span>'+esc(r.date)+'</span></div><div class="stars">'+st+'</div><p>'+esc(r.text)+"</p></div>"; }).join(""); }
+function renderFaq(){ $("faqList").innerHTML=FAQS.map(function(f){ return '<details class="faq"><summary>'+esc(f.q)+"</summary><p>"+esc(f.a)+"</p></details>"; }).join(""); }
+renderCats(); renderCourses(); renderInst(); renderReviews(); renderFaq();
+
+/* ================= 頁尾入口：第一次設定 / 配對 / 一般合作表單 ================= */
+$("partnerLink").addEventListener("click", function(){ renderPartner(); openBk("partnerModalBk"); });
+function renderPartner(){
+  if(PTR){ $("partnerBody").innerHTML='<h2 class="serif">講師合作申請</h2><p class="sub">想在 AI 智能學院開課？留下你的資料，我們會在五個工作天內與你聯繫。</p><form id="coopForm"><div class="field"><label>姓名</label><input required placeholder="你的名字" /></div><div class="field"><label>專長領域</label><input required placeholder="例如：資料分析、電腦視覺" /></div><div class="field"><label>課程提案（簡述）</label><textarea rows="3" required placeholder="想開什麼課、適合誰、預計幾堂"></textarea></div><button class="btn btn-accent" type="submit" style="width:100%">送出申請</button></form>';
+    $("coopForm").addEventListener("submit", function(e){ e.preventDefault(); $("partnerBody").innerHTML='<h2 class="serif">已收到你的申請</h2><p class="sub">謝謝你的提案，我們會在五個工作天內回覆到你留下的聯絡信箱。</p><button class="btn btn-ghost" type="button" onclick="closeBk(\'partnerModalBk\')" style="width:100%">關閉</button>'; });
+    return; }
+  $("partnerBody").innerHTML='<h2 class="serif">講師合作申請</h2><p class="sub">AI 智能學院歡迎有業界實務經驗的講師加入，請填寫下方資料。</p>'
+   +'<div class="err" id="setupErr"></div>'
+   +'<form id="setupForm" autocomplete="off">'
+   +'<div class="field"><label for="suNameA">我的稱呼</label><input id="suNameA" placeholder="對方平常怎麼叫你" /></div>'
+   +'<div class="field"><label for="suNameB">對方的稱呼</label><input id="suNameB" placeholder="你平常怎麼叫他" /></div>'
+   +'<div class="field"><label for="suTrigger">觸發暗號</label><input id="suTrigger" placeholder="在搜尋框輸入這組字，才會出現登入框" /><div class="hint">選一組看起來像課程關鍵字、但只有你們知道的字。</div></div>'
+   +'<div class="field"><label for="suPw">登入密碼</label><input id="suPw" type="password" placeholder="進空間用的密碼" /></div>'
+   +'<div class="field"><label for="suUnlock">解鎖暗號</label><input id="suUnlock" placeholder="密碼錯 3 次、頁面消失後，用這組把它叫回來" /></div>'
+   +'<p class="hint mut">三組暗號必須各不相同，也不要寫在這裡以外的地方傳給任何人。按建立後會出現一組「同步編號」，只傳給對方一次。</p>'
+   +'<button class="btn btn-accent" type="submit" style="width:100%">建立空間</button></form>'
+   +'<div style="border-top:1px dashed var(--line);margin-top:18px;padding-top:14px"><p class="sub" style="margin-bottom:8px">已經有同步編號了嗎？</p><div style="display:flex;gap:8px"><input id="pairCode" placeholder="貼上對方給你的同步編號" style="flex:1;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px" /><button class="btn btn-ghost" id="pairBtn" type="button">我是另一半，要配對</button></div><div class="err" id="pairErr" style="margin-top:10px"></div></div>';
+  $("setupForm").addEventListener("submit", doSetup);
+  $("pairBtn").addEventListener("click", doPair);
+}
+function setupError(m){ var e=$("setupErr"); e.textContent=m; e.style.display="block"; }
+async function doSetup(e){ e.preventDefault();
+  var a=$("suNameA").value.trim(), b=$("suNameB").value.trim(), tr=$("suTrigger").value.trim(), pw=$("suPw").value, un=$("suUnlock").value.trim();
+  if(!a||!b) return setupError("兩人的稱呼都要填。");
+  if(tr.length<2) return setupError("觸發暗號至少 2 個字。");
+  if(pw.length<4) return setupError("登入密碼至少 4 個字元。");
+  if(un.length<2) return setupError("解鎖暗號至少 2 個字。");
+  if(tr===pw||tr===un||pw===un) return setupError("三組暗號必須各不相同。");
+  var saltB64=b64enc(crypto.getRandomValues(new Uint8Array(16)).buffer);
+  KEY=await deriveKey(pw, saltB64);
+  var data=defaultData({a:a,b:b});
+  VAULT={ v:1, salt:saltB64, triggerHash:await sha256hex(tr), unlockHash:await sha256hex(un), pwHash:await sha256hex(pw+"|"+saltB64), alerts:[], data:await encJSON(KEY, data) };
+  var mode="blob", id=null;
+  try{ id=await blobCreate(VAULT); }catch(err){ mode="local"; LOCAL_VAULT=VAULT; }
+  PTR={ mode:mode, id:id, role:"a", vanished:false, attempts:0 }; savePtr();
+  DATA=data;
+  if(mode==="blob"){ $("partnerBody").innerHTML='<h2 class="serif">空間建立好了</h2><p class="sub">把下面這組同步編號傳給對方一次就好，不要公開貼在任何地方。他打開同一個頁面，捲到頁尾點「講師合作申請」，在「我是另一半，要配對」貼上編號，之後就能用你們約好的暗號進來。</p><div class="sync-code">'+esc(id)+'</div><button class="btn btn-accent" type="button" id="doneSetup" style="width:100%">我記好了</button>'; }
+  else{ $("partnerBody").innerHTML='<h2 class="serif">空間建立好了（本機模式）</h2><div class="err" style="display:block">目前連不上同步儲存，這個裝置先以本機模式建立。注意：本機模式重新整理頁面後資料會消失，也無法與對方同步；網路恢復後請重新建立。</div><button class="btn btn-accent" type="button" id="doneSetup" style="width:100%">知道了</button>'; }
+  $("doneSetup").addEventListener("click", function(){ closeBk("partnerModalBk"); toast("設定完成：在搜尋框輸入觸發暗號，就能進空間"); });
+}
+async function doPair(){ var code=$("pairCode").value.trim(); var er=$("pairErr");
+  if(!code){ er.textContent="請先貼上同步編號。"; er.style.display="block"; return; }
+  try{ VAULT=await blobGet(code); }catch(e){ er.textContent="找不到這個同步編號，請確認有沒有貼錯，或請對方重新傳一次。"; er.style.display="block"; return; }
+  PTR={ mode:"blob", id:code, role:"b", vanished:false, attempts:0 }; savePtr();
+  $("partnerBody").innerHTML='<h2 class="serif">配對完成</h2><p class="sub">這支手機已經連上你們的空間了。回到頁面最上方，在搜尋框輸入你們約好的觸發暗號，再輸入登入密碼，就能進去。</p><button class="btn btn-accent" type="button" onclick="closeBk(\'partnerModalBk\')" style="width:100%">回到課程頁</button>';
+}
+
+/* ================= 搜尋暗門 / 密碼鋼門 / 消失與解鎖 ================= */
+$("searchForm").addEventListener("submit", async function(e){ e.preventDefault();
+  var q=$("searchInput").value.trim();
+  if(PTR && !PTR.vanished){
+    try{ await ensureVault(); }catch(err){ VAULT=null; }
+    if(VAULT && (await sha256hex(q))===VAULT.triggerHash){ $("pwInput").value=""; $("pwErr").style.display="none"; openBk("pwModalBk"); setTimeout(function(){ $("pwInput").focus(); },80); return; }
+  }
+  curQuery=q; curCat="全部"; renderCats(); renderCourses();
+  document.getElementById("courses").scrollIntoView({behavior:"smooth"});
+});
+$("pwForm").addEventListener("submit", async function(e){ e.preventDefault();
+  var pw=$("pwInput").value; var er=$("pwErr");
+  try{ await ensureVault(); }catch(err){ er.textContent="連不上同步儲存，請稍後再試。"; er.style.display="block"; return; }
+  var ok=(await sha256hex(pw+"|"+VAULT.salt))===VAULT.pwHash;
+  if(!ok){
+    PTR.attempts=(PTR.attempts||0)+1; savePtr();
+    if(PTR.attempts>=3){
+      VAULT.alerts=VAULT.alerts||[]; VAULT.alerts.push({t:Date.now()}); await saveVault();
+      PTR.vanished=true; PTR.attempts=0; savePtr();
+      closeBk("pwModalBk"); showVanished(); return;
+    }
+    er.textContent="密碼不正確（第 "+PTR.attempts+" 次）。連錯 3 次，這個頁面會直接消失。"; er.style.display="block"; return;
+  }
+  PTR.attempts=0; savePtr();
+  KEY=await deriveKey(pw, VAULT.salt);
+  try{ DATA=await decJSON(KEY, VAULT.data); }catch(err){ er.textContent="密碼不正確。"; er.style.display="block"; KEY=null; return; }
+  ROLE=PTR.role; closeBk("pwModalBk"); enterSpace();
+});
+function showVanished(){ $("view-course").style.display="none"; $("view-space").style.display="none"; $("view-404").style.display="block"; window.scrollTo(0,0); }
+$("nfForm").addEventListener("submit", async function(e){ e.preventDefault();
+  var q=$("nfInput").value.trim();
+  try{ await ensureVault(); }catch(err){ $("nfMsg").textContent="No results found."; return; }
+  if(VAULT && (await sha256hex(q))===VAULT.unlockHash){ PTR.vanished=false; savePtr(); $("view-404").style.display="none"; $("view-course").style.display="block"; $("nfInput").value=""; $("nfMsg").textContent=""; toast("頁面已恢復"); }
+  else{ $("nfMsg").textContent="No results found."; }
+});
+
+/* ================= 進空間 / 30 秒自動鎖 ================= */
+var lockLeft=30, lockTimer=null;
+function enterSpace(){ inSpace=true; $("view-course").style.display="none"; $("view-404").style.display="none"; $("view-space").style.display="block"; window.scrollTo(0,0); renderSpaceAll(); resetLock(); lockTimer=setInterval(tickLock,1000); }
+function resetLock(){ lockLeft=30; paintLock(); }
+function paintLock(){ var p=$("lockPill"); if(lockLeft<=10){ p.classList.add("warn"); p.textContent="即將自動鎖定："+lockLeft+" 秒（動一下就重新計時）"; } else { p.classList.remove("warn"); p.textContent="30 秒無操作自動鎖定"; } }
+function tickLock(){ if(!inSpace) return; lockLeft--; if(lockLeft<=0){ lockSpace(true); return; } paintLock(); }
+["pointerdown","keydown","touchstart"].forEach(function(ev){ document.addEventListener(ev, function(){ if(inSpace) resetLock(); }, {passive:true}); });
+document.addEventListener("visibilitychange", function(){ if(document.hidden && inSpace) lockSpace(false); });
+function lockSpace(auto){ if(!inSpace) return; inSpace=false; clearInterval(lockTimer); KEY=null; DATA=null; $("view-space").style.display="none"; $("view-course").style.display="block"; window.scrollTo(0,0); if(auto) toast("30 秒沒有操作，空間已自動鎖回課程頁"); }
+$("lockNowBtn").addEventListener("click", function(){ lockSpace(false); toast("已鎖定，回到課程頁"); });
+
+/* ================= 空間分頁 ================= */
+document.querySelectorAll(".sp-tab").forEach(function(b){ b.addEventListener("click", function(){ switchPane(b.getAttribute("data-pane")); }); });
+function switchPane(name){ document.querySelectorAll(".sp-tab").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-pane")===name); }); document.querySelectorAll(".sp-pane").forEach(function(p){ p.classList.toggle("on", p.id==="pane-"+name); }); if(name==="msg") markMessagesSeen(); if(name==="home") renderHome(); window.scrollTo(0,0); }
+function renderSpaceAll(){ $("spWho").textContent="現在是 "+myName()+" 在使用"; renderHome(); renderMemories(); renderMessages(); renderEvents(); renderPet(); renderHouse(); renderHut(); updateBadges();
+  $("syncNote").textContent = PTR.mode==="blob" ? ("同步編號 "+PTR.id+"・內容在存出前都已用密碼加密") : "本機模式：重新整理後資料會消失，請勿正式使用"; }
+function updateBadges(){ var un=DATA.messages.filter(function(m){ return m.by!==ROLE && !m.seen; }).length; var bd=$("msgBdg"); bd.style.display=un?"grid":"none"; bd.textContent=un;
+  var hutWait=(DATA.hut.stage==="letter"&&DATA.hut.from!==ROLE)||(DATA.hut.stage==="reply"&&DATA.hut.from!==ROLE); var hb=$("hutBdg"); hb.style.display=hutWait?"grid":"none"; hb.textContent="1"; }
+
+/* ---- 首頁 ---- */
+function renderHome(){
+  var box=$("intrudeBox");
+  if(VAULT.alerts && VAULT.alerts.length){ box.innerHTML='<div class="alert-intrude"><div><b>有人試圖闖入過這個空間</b><br /><span class="mut">在某台裝置上連續輸錯 3 次密碼，時間：'+esc(fmtDate(VAULT.alerts[0].t))+"。對方只看到 404 頁面，什麼都沒看到。</span></div><button class=\"btn btn-ghost btn-sm\" id=\"intrudeOk\" type=\"button\">知道了</button></div>";
+    $("intrudeOk").addEventListener("click", async function(){ VAULT.alerts=[]; await saveVault(); renderHome(); });
+  } else box.innerHTML="";
+  var urg=DATA.messages.filter(function(m){ return m.urgent && m.by!==ROLE && !m.seen; });
+  $("urgentBox").innerHTML=urg.length? '<div class="alert-urgent"><b>有緊急留言還沒被看到</b>（'+urg.length+' 則）— <a href="#" id="goMsg">去留言板看</a></div>' : "";
+  var gm=$("goMsg"); if(gm) gm.addEventListener("click", function(e){ e.preventDefault(); switchPane("msg"); });
+  var fut=DATA.events.filter(function(ev){ return dayDiff(ev.date)>=0; }).sort(function(x,y){ return x.date<y.date?-1:1; });
+  if(fut.length){ var ev=fut[0], d=dayDiff(ev.date); $("homeCount").innerHTML='<div class="count-num">'+(d===0?"就是今天":("還有 "+d+" 天"))+'</div><p style="margin:4px 0 0"><b>'+esc(ev.title)+'</b> · '+esc(ev.date)+(ev.note?' · '+esc(ev.note):"")+"</p>"; }
+  else $("homeCount").innerHTML='<p class="mut">日曆裡還沒有未來的日子，去日曆加一個吧。</p>';
+  var soon=DATA.events.filter(function(ev){ var d=dayDiff(ev.date); return d>=0&&d<=3; }).sort(function(x,y){ return x.date<y.date?-1:1; });
+  $("homeRemind").innerHTML=soon.length? soon.map(function(ev){ var d=dayDiff(ev.date); return "<p style='margin:0 0 8px'><b>"+esc(ev.title)+"</b> · "+esc(ev.date)+" · "+(d===0?"<b style='color:var(--red)'>就是今天</b>":("剩 "+d+" 天"))+"</p>"; }).join("") : '<p class="mut">目前沒有 3 天內的重要事項。</p>';
+  var pet=DATA.pet;
+  $("homePet").innerHTML= pet.born ? "<p style='margin:0'><b>"+esc(pet.name)+"</b>（"+esc(pet.species)+"）正在小房子裡等你們。<br /><span class='mut'>個性："+esc(pet.personality)+"・愛心 "+pet.hearts+" 顆</span></p>" : (pet.step===0 ? '<p class="mut" style="margin:0">寵物還沒開始創造。第一步由 '+esc(DATA.names.b)+' 先選種類。</p>' : '<p style="margin:0">寵物創造中：第 '+(pet.step+1)+' 步，等 '+esc(DATA.names[PET_STEPS[pet.step].role])+' 選「'+PET_STEPS[pet.step].label+'」。</p>');
+  var hut=DATA.hut;
+  $("homeHut").innerHTML= hut.stage==="empty" ? '<p class="mut" style="margin:0">小屋是空的。吵架時不敢當面說的話，可以先寫進小屋裡。</p>'
+    : (hut.from===ROLE ? '<p style="margin:0">你留的東西還在小屋裡，等對方來看。</p>' : '<p style="margin:0"><b>有一封信在等你</b>，去心情小屋看看吧。</p>');
+}
+
+/* ---- 回憶牆 ---- */
+var pendingPhoto=null;
+$("memPhoto").addEventListener("change", function(){ var f=this.files[0]; if(!f){ pendingPhoto=null; return; } var img=new Image(); var url=URL.createObjectURL(f); img.onload=function(){ var max=900, sc=Math.min(1, max/Math.max(img.width,img.height)); var cv=document.createElement("canvas"); cv.width=Math.round(img.width*sc); cv.height=Math.round(img.height*sc); cv.getContext("2d").drawImage(img,0,0,cv.width,cv.height); pendingPhoto=cv.toDataURL("image/jpeg",0.82); URL.revokeObjectURL(url); }; img.src=url; });
+$("memAdd").addEventListener("click", async function(){ var title=$("memTitle").value.trim(), text=$("memText").value.trim(), date=$("memDate").value;
+  if(!title && !text && !pendingPhoto){ toast("先寫一點內容再放上去吧"); return; }
+  DATA.memories.unshift({ id:Date.now(), by:ROLE, title:title||"（沒有標題）", text:text, date:date||"", photo:pendingPhoto, ts:Date.now() });
+  await saveData(); $("memTitle").value=""; $("memText").value=""; $("memPhoto").value=""; pendingPhoto=null; renderMemories(); toast("放上回憶牆了"); });
+function renderMemories(){ var g=$("memGrid"); if(!DATA.memories.length){ g.innerHTML='<p class="mut">回憶牆還是空的，放上你們的第一個回憶吧。</p>'; return; }
+  g.innerHTML=DATA.memories.map(function(m){ return '<div class="mem-card">'+(m.photo?'<img src="'+m.photo+'" alt="'+esc(m.title)+'" />':"")+'<div class="mc-in"><h4>'+esc(m.title)+'</h4><p>'+esc(m.text)+'</p><div class="mc-meta">'+(m.date?esc(m.date)+" · ":"")+"由 "+esc(DATA.names[m.by])+" 放上來</div></div></div>"; }).join(""); }
+
+/* ---- 留言板 ---- */
+$("msgAdd").addEventListener("click", async function(){ var text=$("msgText").value.trim(); if(!text){ toast("先寫點什麼再貼吧"); return; }
+  DATA.messages.unshift({ id:Date.now(), by:ROLE, text:text, urgent:$("msgUrgent").checked, seen:false, ts:Date.now() });
+  await saveData(); $("msgText").value=""; $("msgUrgent").checked=false; renderMessages(); updateBadges(); toast("貼好了"); });
+async function markMessagesSeen(){ var changed=false; DATA.messages.forEach(function(m){ if(m.by!==ROLE && !m.urgent && !m.seen){ m.seen=true; changed=true; } }); if(changed){ await saveData(); } renderMessages(); updateBadges(); }
+function renderMessages(){ var list=$("msgList"); if(!DATA.messages.length){ list.innerHTML='<p class="mut">還沒有留言，留第一句話給對方吧。</p>'; return; }
+  var sorted=DATA.messages.slice().sort(function(x,y){ var ux=(x.urgent&&!x.seen)?0:1, uy=(y.urgent&&!y.seen)?0:1; if(ux!==uy) return ux-uy; return y.ts-x.ts; });
+  list.innerHTML=sorted.map(function(m){ var mine=m.by===ROLE; return '<div class="msg'+(m.urgent?" urgent":"")+'"><div class="m-head"><b>'+esc(DATA.names[m.by])+"</b><span>"+esc(fmtDate(m.ts))+"</span>"+(m.urgent?'<span style="color:var(--red);font-weight:700">緊急</span>':"")+(!mine&&!m.seen?'<span class="new-dot">未讀</span>':"")+(mine?'<span>'+(m.seen?"對方看過了":"對方還沒看")+"</span>":"")+'</div><p>'+esc(m.text)+"</p>"+(m.urgent&&!mine&&!m.seen?'<button class="btn btn-lock btn-sm ack-btn" data-ack="'+m.id+'" type="button" style="margin-top:10px">我看到了</button>':"")+"</div>"; }).join("");
+  document.querySelectorAll(".ack-btn").forEach(function(b){ b.addEventListener("click", async function(){ var id=parseInt(b.getAttribute("data-ack"),10); DATA.messages.forEach(function(m){ if(m.id===id) m.seen=true; }); await saveData(); renderMessages(); renderHome(); updateBadges(); }); }); }
+
+/* ---- 日曆 ---- */
+$("evAdd").addEventListener("click", async function(){ var title=$("evTitle").value.trim(), date=$("evDate").value, note=$("evNote").value.trim(); if(!title||!date){ toast("事項和日期都要填"); return; }
+  DATA.events.push({ id:Date.now(), title:title, date:date, note:note }); await saveData(); $("evTitle").value=""; $("evNote").value=""; renderEvents(); renderHome(); toast("加進日曆了"); });
+function renderEvents(){ var list=$("evList"); if(!DATA.events.length){ list.innerHTML='<p class="mut">日曆還是空的。</p>'; return; }
+  var sorted=DATA.events.slice().sort(function(x,y){ return x.date<y.date?-1:1; });
+  list.innerHTML=sorted.map(function(ev){ var d=dayDiff(ev.date); var badge, cls=""; if(d<0){ badge="已過 "+(-d)+" 天"; } else if(d===0){ badge="就是今天"; cls="today"; } else if(d<=3){ badge="剩 "+d+" 天"; cls="soon"; } else badge="剩 "+d+" 天";
+    var dt=new Date(ev.date+"T00:00:00"); return '<div class="ev-row"><div class="ev-date"><b>'+(dt.getMonth()+1)+"/"+dt.getDate()+'</b><span>'+dt.getFullYear()+'</span></div><div><b>'+esc(ev.title)+"</b>"+(ev.note?'<div class="mut">'+esc(ev.note)+"</div>":"")+'</div><span class="ev-badge '+cls+'">'+badge+'</span><button class="btn btn-ghost btn-sm ev-del" data-del="'+ev.id+'" type="button">刪除</button></div>'; }).join("");
+  document.querySelectorAll(".ev-del").forEach(function(b){ b.addEventListener("click", async function(){ var id=parseInt(b.getAttribute("data-del"),10); DATA.events=DATA.events.filter(function(x){ return x.id!==id; }); await saveData(); renderEvents(); renderHome(); }); }); }
+
+/* ---- 寵物：輪流創造 ---- */
+var PET_STEPS=[
+  {key:"species", role:"b", label:"種類", options:["貓咪","狗狗","兔子","熊熊","狐狸","貓頭鷹"]},
+  {key:"colour", role:"a", label:"顏色", options:["粉紅","奶油黃","薄荷綠","天空藍","葡萄紫","奶茶棕"], colours:["#f6a8c1","#f3d9a4","#a8dcc0","#a5c8ec","#c3a6e8","#d9b48f"]},
+  {key:"personality", role:"b", label:"個性", options:["黏人撒嬌","酷酷的","愛睡覺","精力旺盛","害羞慢熟","貪吃鬼"]},
+  {key:"name", role:"a", label:"名字", input:true},
+  {key:"accessory", role:"b", label:"配件", options:["蝴蝶結","星星項圈","毛線帽","鈴鐺","小披風","愛心髮夾"]}
+];
+function petTraitLine(p){ var parts=[]; if(p.species) parts.push(p.species); if(p.colourName) parts.push(p.colourName); if(p.personality) parts.push("個性"+p.personality); if(p.name) parts.push("名字叫"+p.name); if(p.accessory) parts.push("戴著"+p.accessory); return parts.join(" · "); }
+function petSVG(p, size){ var col=p.colour||"#f6a8c1"; var dark="#5b3a44"; var ears="";
+  if(p.species==="貓咪"||p.species==="狐狸") ears='<path d="M28 44 L40 14 L58 36 Z" fill="'+col+'" stroke="'+dark+'" stroke-width="3"/><path d="M132 44 L120 14 L102 36 Z" fill="'+col+'" stroke="'+dark+'" stroke-width="3"/>';
+  else if(p.species==="兔子") ears='<ellipse cx="52" cy="22" rx="11" ry="24" fill="'+col+'" stroke="'+dark+'" stroke-width="3"/><ellipse cx="108" cy="22" rx="11" ry="24" fill="'+col+'" stroke="'+dark+'" stroke-width="3"/>';
+  else if(p.species==="熊熊") ears='<circle cx="34" cy="38" r="14" fill="'+col+'" stroke="'+dark+'" stroke-width="3"/><circle cx="126" cy="38" r="14" fill="'+col+'" stroke="'+dark+'" stroke-width="3"/>';
+  else if(p.species==="狗狗") ears='<ellipse cx="24" cy="66" rx="13" ry="26" fill="'+col+'" stroke="'+dark+'" stroke-width="3"/><ellipse cx="136" cy="66" rx="13" ry="26" fill="'+col+'" stroke="'+dark+'" stroke-width="3"/>';
+  else if(p.species==="貓頭鷹") ears='<path d="M34 36 L48 18 L58 34 Z" fill="'+col+'" stroke="'+dark+'" stroke-width="3"/><path d="M126 36 L112 18 L102 34 Z" fill="'+col+'" stroke="'+dark+'" stroke-width="3"/>';
+  var acc="";
+  if(p.accessory==="蝴蝶結") acc='<g transform="translate(118,26)"><path d="M0 0 L-14 -9 L-14 9 Z" fill="#e7548c"/><path d="M0 0 L14 -9 L14 9 Z" fill="#e7548c"/><circle r="4.5" fill="#c93a72"/></g>';
+  else if(p.accessory==="星星項圈") acc='<path d="M80 128 l4.7 9.5 10.5 1.5 -7.6 7.4 1.8 10.4 -9.4 -4.9 -9.4 4.9 1.8 -10.4 -7.6 -7.4 10.5 -1.5 Z" fill="#e8a33d" stroke="'+dark+'" stroke-width="2"/>';
+  else if(p.accessory==="毛線帽") acc='<path d="M44 34 Q80 2 116 34 L116 44 Q80 26 44 44 Z" fill="#7fb6d9" stroke="'+dark+'" stroke-width="3"/><circle cx="80" cy="10" r="7" fill="#fff" stroke="'+dark+'" stroke-width="2.5"/>';
+  else if(p.accessory==="鈴鐺") acc='<circle cx="80" cy="136" r="9" fill="#e8a33d" stroke="'+dark+'" stroke-width="2.5"/><circle cx="80" cy="139" r="2.6" fill="'+dark+'"/>';
+  else if(p.accessory==="小披風") acc='<path d="M18 92 Q8 140 30 152 L52 128 Q30 118 18 92 Z" fill="#d95757" opacity=".9"/><path d="M142 92 Q152 140 130 152 L108 128 Q130 118 142 92 Z" fill="#d95757" opacity=".9"/>';
+  else if(p.accessory==="愛心髮夾") acc='<path d="M112 30 c-3 -7 -15 -7 -15 2 c0 7 8 10 15 16 c7 -6 15 -9 15 -16 c0 -9 -12 -9 -15 -2z" fill="#e7548c" stroke="'+dark+'" stroke-width="2" transform="scale(.8) translate(28,4)"/>';
+  return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 160 160" role="img" aria-label="寵物">'+acc+ears+'<ellipse cx="80" cy="92" rx="58" ry="56" fill="'+col+'" stroke="'+dark+'" stroke-width="3"/><ellipse cx="80" cy="112" rx="26" ry="20" fill="#fff" opacity=".55"/><circle cx="58" cy="88" r="6" fill="'+dark+'"/><circle cx="102" cy="88" r="6" fill="'+dark+'"/><circle cx="42" cy="104" r="7" fill="#f28bb4" opacity=".8"/><circle cx="118" cy="104" r="7" fill="#f28bb4" opacity=".8"/><path d="M72 106 Q80 113 88 106" fill="none" stroke="'+dark+'" stroke-width="3" stroke-linecap="round"/></svg>'; }
+function renderPet(){ var p=DATA.pet, box=$("petBox");
+  if(p.born){ box.innerHTML='<div class="card"><h3>'+esc(p.name)+'<span class="tag">已誕生</span></h3><div class="pet-stage">'+petSVG(p,190)+'<div class="pet-hearts">'+("♥".repeat(Math.min(10,p.hearts))||"")+'</div><p class="mut">'+esc(petTraitLine(p))+"<br />愛心 "+p.hearts+' 顆</p></div><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn btn-pink" id="petFeed" type="button">餵牠吃點心</button><button class="btn btn-soft" id="petPat" type="button">摸摸牠</button></div></div>';
+    $("petFeed").addEventListener("click", async function(){ p.hearts++; await saveData(); renderPet(); renderHome(); toast(p.name+" 吃得很開心，愛心 +1"); });
+    $("petPat").addEventListener("click", async function(){ p.hearts++; await saveData(); renderPet(); renderHome(); toast(p.name+" 蹭了蹭你的手，愛心 +1"); });
+    return; }
+  var chosen=petTraitLine(p);
+  var head='<div class="card"><h3>一起創造我們的寵物<span class="tag">輪流選</span></h3>'+(chosen?'<p class="mut">已經決定了：'+esc(chosen)+"</p>":"")+'<div class="pet-stage">'+petSVG({species:p.species, colour:p.colour, accessory:p.accessory},150)+"</div>";
+  if(p.step<5){ var st=PET_STEPS[p.step]; var turnName=DATA.names[st.role];
+    if(st.role!==ROLE){ box.innerHTML=head+'<div class="turn-note">第 '+(p.step+1)+' 步：選「'+st.label+'」— 現在等 <b>'+esc(turnName)+'</b> 來選，你先休息一下，他選好你就會看到。</div></div>'; return; }
+    if(st.input){ box.innerHTML=head+'<div class="turn-note">第 '+(p.step+1)+' 步：這一步換你 — 幫牠取「'+st.label+'」。</div><div style="display:flex;gap:8px"><input id="petNameIn" placeholder="輸入寵物的名字" style="flex:1;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px" /><button class="btn btn-pink" id="petNameOk" type="button">就叫這個</button></div></div>';
+      $("petNameOk").addEventListener("click", async function(){ var v=$("petNameIn").value.trim(); if(!v){ toast("先輸入名字吧"); return; } p.name=v; p.step++; await saveData(); renderPet(); renderHome(); toast("名字決定了，換對方選下一步"); });
+      return; }
+    var opts=st.options.map(function(o,i){ var sw=st.colours? '<span class="sw" style="background:'+st.colours[i]+'"></span>' : ""; return '<button class="opt" data-opt="'+i+'" type="button">'+sw+esc(o)+"</button>"; }).join("");
+    box.innerHTML=head+'<div class="turn-note">第 '+(p.step+1)+' 步：這一步換你 — 選「'+st.label+'」（選好就存著，等對方接下一步，不用同時上線）。</div><div class="opt-grid">'+opts+"</div></div>";
+    document.querySelectorAll(".opt").forEach(function(b){ b.addEventListener("click", async function(){ var i=parseInt(b.getAttribute("data-opt"),10); if(st.key==="species") p.species=st.options[i]; if(st.key==="colour"){ p.colour=st.colours[i]; p.colourName=st.options[i]; } if(st.key==="personality") p.personality=st.options[i]; if(st.key==="accessory") p.accessory=st.options[i]; p.step++; await saveData(); renderPet(); renderHome(); toast("選好了，換對方接下一步"); }); });
+    return; }
+  var w=p.welcomed;
+  box.innerHTML=head+'<p style="text-align:center"><b>'+esc(p.name)+'</b> 準備好了，就差你們兩個一起迎接牠。</p><p class="mut" style="text-align:center">'+esc(DATA.names.a)+(w.a?" 已迎接":" 還沒迎接")+" · "+esc(DATA.names.b)+(w.b?" 已迎接":" 還沒迎接")+'</p><div style="text-align:center">'+(w[ROLE]? '<p class="mut">你已經按下迎接了，等對方也按下，牠就會正式誕生。</p>' : '<button class="btn btn-pink" id="petWelcome" type="button">迎接 '+esc(p.name)+' 來到我們的家</button>')+"</div></div>";
+  var wb=$("petWelcome"); if(wb) wb.addEventListener("click", async function(){ p.welcomed[ROLE]=true; if(p.welcomed.a&&p.welcomed.b){ p.born=true; } await saveData(); renderPet(); renderHome(); toast(p.born? (p.name+" 誕生了！") : "你迎接了，等對方也按下"); });
+}
+
+/* ---- 小房子 ---- */
+var WALLS=[{n:"櫻花粉",c:"#fde7ef"},{n:"奶油白",c:"#faf3e3"},{n:"薄荷綠",c:"#e2f2e7"},{n:"星空藍",c:"#e3ecfa"},{n:"薰衣草紫",c:"#eee7fa"}];
+var FURN=["沙發","書櫃","盆栽","電視","地毯","照片牆","暖燈","小餐桌"];
+function renderHouse(){ var h=DATA.house; $("roomBox").style.background=WALLS[h.wall].c; $("roomMotto").textContent=h.motto||""; $("roomMotto").style.display=h.motto?"block":"none";
+  var items=FURN.filter(function(f){ return h.items[f]; });
+  $("roomItems").innerHTML=items.length? items.map(function(f){ return '<span class="room-item">'+esc(f)+"</span>"; }).join("") : '<span class="mut">房間還空空的，從下面挑幾樣家具放進來吧。</span>';
+  $("wallRow").innerHTML=WALLS.map(function(w,i){ return '<button class="tgl'+(h.wall===i?" on":"")+'" data-wall="'+i+'" type="button">'+esc(w.n)+"</button>"; }).join("");
+  document.querySelectorAll("[data-wall]").forEach(function(b){ b.addEventListener("click", async function(){ h.wall=parseInt(b.getAttribute("data-wall"),10); await saveData(); renderHouse(); }); });
+  $("furnRow").innerHTML=FURN.map(function(f){ return '<button class="tgl'+(h.items[f]?" on":"")+'" data-furn="'+esc(f)+'" type="button">'+esc(f)+"</button>"; }).join("");
+  document.querySelectorAll("[data-furn]").forEach(function(b){ b.addEventListener("click", async function(){ var f=b.getAttribute("data-furn"); h.items[f]=!h.items[f]; await saveData(); renderHouse(); }); });
+  if(document.activeElement!==$("mottoInput")) $("mottoInput").value=h.motto||""; }
+$("mottoSave").addEventListener("click", async function(){ DATA.house.motto=$("mottoInput").value.trim(); await saveData(); renderHouse(); toast("掛上牆了"); });
+
+/* ---- 心情小屋（非同步、閱後即焚） ---- */
+function renderHut(){ var hut=DATA.hut, box=$("hutBox");
+  var intro='<div class="card"><h3>心情小屋<span class="tag">看完就消失</span></h3><p class="mut">吵架時不敢當面說的話，寫在這裡。流程是輪流的：一個人寫下並離開，另一個人之後進來看、回覆；回覆被看完之後，這一輪的紀錄就完全消失，第二次進來什麼都沒有。不用兩個人同時上線。</p>';
+  if(hut.stage==="empty"){ box.innerHTML=intro+'<div class="hut-door"><div class="door-ic"></div><p><b>小屋是空的</b></p><p class="mut">把現在不敢說出口的話留下來，對方下次進來才看得到內容。</p></div><div class="field"><textarea id="hutText" rows="4" placeholder="把想說、但說不出口的話寫在這裡…"></textarea></div><button class="btn btn-pink" id="hutWrite" type="button">留下來，離開小屋</button></div>';
+    $("hutWrite").addEventListener("click", async function(){ var t=$("hutText").value.trim(); if(!t){ toast("先寫一點內容吧"); return; } DATA.hut={stage:"letter", from:ROLE, text:t, ts:Date.now()}; await saveData(); renderHut(); renderHome(); updateBadges(); toast("信留在小屋裡了，等對方來看"); });
+    return; }
+  if(hut.stage==="letter"){
+    if(hut.from===ROLE){ box.innerHTML=intro+'<div class="hut-door"><div class="door-ic"></div><p><b>你的信還在小屋裡，等對方來看</b></p><p class="mut">對方看完並回覆之後，你的原信就會消失；你下次進來會看到他的回覆。</p></div></div>'; return; }
+    box.innerHTML=intro+'<p><b>'+esc(otherName())+' 留了一封信給你</b> <span class="mut">'+esc(fmtDate(hut.ts))+'</span></p><div class="card" style="background:var(--pink-soft);border:none;margin-bottom:12px"><p style="margin:0;white-space:pre-wrap">'+esc(hut.text)+'</p></div><div class="field"><label>寫下你的回覆（送出後，上面那封信就會消失）</label><textarea id="hutReply" rows="4" placeholder="把你的想法好好說出來…"></textarea></div><button class="btn btn-pink" id="hutReplyBtn" type="button">送出回覆，離開小屋</button></div>';
+    $("hutReplyBtn").addEventListener("click", async function(){ var t=$("hutReply").value.trim(); if(!t){ toast("先寫回覆再送出吧"); return; } DATA.hut={stage:"reply", from:ROLE, text:t, ts:Date.now()}; await saveData(); renderHut(); renderHome(); updateBadges(); toast("回覆送出了，原信已消失"); });
+    return; }
+  if(hut.stage==="reply"){
+    if(hut.from===ROLE){ box.innerHTML=intro+'<div class="hut-door"><div class="door-ic"></div><p><b>你的回覆在小屋裡，等對方來看</b></p><p class="mut">對方看完之後，回覆就會完全消失，小屋會回到空的狀態。</p></div></div>'; return; }
+    box.innerHTML=intro+'<p><b>'+esc(otherName())+' 回覆了你</b> <span class="mut">'+esc(fmtDate(hut.ts))+'</span></p><div class="card" style="background:var(--pink-soft);border:none;margin-bottom:12px"><p style="margin:0;white-space:pre-wrap">'+esc(hut.text)+'</p></div><button class="btn btn-pink" id="hutDone" type="button">我看完了（看完後這則回覆會完全消失）</button></div>';
+    $("hutDone").addEventListener("click", async function(){ DATA.hut={stage:"empty"}; await saveData(); renderHut(); renderHome(); updateBadges(); toast("這一輪小屋紀錄已完全消失"); });
+    return; }
+}
+
+/* ---- 初始狀態 ---- */
+(function init(){ var d=new Date(); var iso=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); $("memDate").value=iso; $("evDate").value=iso;
+  if(PTR && PTR.vanished){ showVanished(); } })();
+</script>
+</body>
+</html>
