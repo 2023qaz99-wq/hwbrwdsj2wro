@@ -741,13 +741,14 @@ async function encJSON(key, obj){ var iv=crypto.getRandomValues(new Uint8Array(1
 async function decJSON(key, b64){ var all=new Uint8Array(b64dec(b64)); var pt=await crypto.subtle.decrypt({name:"AES-GCM", iv:all.slice(0,12)}, key, all.slice(12)); return JSON.parse(new TextDecoder().decode(pt)); }
 
 /* ================= 儲存：遠端同步保險箱（內容皆為密文）＋本機備援 ================= */
-var BLOB_API="https://jsonblob.com/api/jsonBlob";
+var BLOB_API="https://ai-space-vault.2023qaz99.workers.dev/vault";
 var PTR=null, VAULT=null, DATA=null, KEY=null, ROLE=null, LOCAL_VAULT=null, inSpace=false;
-try{ PTR=JSON.parse(localStorage.getItem("aixy_ptr_v1")||"null"); }catch(e){ PTR=null; }
-function savePtr(){ try{ if(PTR) localStorage.setItem("aixy_ptr_v1", JSON.stringify(PTR)); }catch(e){} }
-async function blobCreate(obj){ var r=await fetch(BLOB_API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(obj)}); if(!r.ok) throw new Error("create failed"); var loc=r.headers.get("Location")||""; var id=loc.split("/").pop(); if(!id) throw new Error("no id"); return id; }
-async function blobGet(id){ var r=await fetch(BLOB_API+"/"+id); if(!r.ok) throw new Error("get failed"); return r.json(); }
-async function blobPut(id,obj){ var r=await fetch(BLOB_API+"/"+id,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(obj)}); if(!r.ok) throw new Error("put failed"); }
+try{ PTR=JSON.parse(localStorage.getItem("aixy_ptr_v2")||"null"); }catch(e){ PTR=null; }
+function savePtr(){ try{ if(PTR) localStorage.setItem("aixy_ptr_v2", JSON.stringify(PTR)); }catch(e){} }
+function newSyncId(){ if(crypto.randomUUID) return crypto.randomUUID(); var s=""; var h="0123456789abcdef"; for(var i=0;i<32;i++){ s+=h[Math.floor(Math.random()*16)]; if(i===7||i===11||i===15||i===19) s+="-"; } return s; }
+async function blobCreate(obj){ var id=newSyncId(); var r=await fetch(BLOB_API+"?id="+encodeURIComponent(id),{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(obj)}); if(!r.ok) throw new Error("create failed"); return id; }
+async function blobGet(id){ var r=await fetch(BLOB_API+"?id="+encodeURIComponent(id)); if(!r.ok) throw new Error("get failed"); return r.json(); }
+async function blobPut(id,obj){ var r=await fetch(BLOB_API+"?id="+encodeURIComponent(id),{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(obj)}); if(!r.ok) throw new Error("put failed"); }
 async function ensureVault(){ if(VAULT||!PTR) return VAULT; if(PTR.mode==="local"){ VAULT=LOCAL_VAULT; return VAULT; } VAULT=await blobGet(PTR.id); return VAULT; }
 async function saveVault(){ if(!PTR) return; if(PTR.mode==="local"){ LOCAL_VAULT=VAULT; return; } try{ await blobPut(PTR.id, VAULT); }catch(e){ toast("同步失敗，請確認網路後再操作一次"); } }
 async function saveData(){ VAULT.data=await encJSON(KEY, DATA); await saveVault(); }
