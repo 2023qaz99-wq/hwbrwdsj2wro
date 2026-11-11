@@ -465,11 +465,9 @@
         </div>
         <div class="sp-tabs" id="spTabs">
           <button class="sp-tab on" data-pane="home" type="button">首頁</button>
-          <button class="sp-tab" data-pane="mem" type="button">回憶牆</button>
           <button class="sp-tab" data-pane="msg" type="button">留言板<span class="bdg" id="msgBdg" style="display:none"></span></button>
           <button class="sp-tab" data-pane="cal" type="button">日曆</button>
           <button class="sp-tab" data-pane="pet" type="button">我們的寵物</button>
-          <button class="sp-tab" data-pane="house" type="button">小房子</button>
           <button class="sp-tab" data-pane="hut" type="button">心情小屋<span class="bdg" id="hutBdg" style="display:none"></span></button>
         </div>
       </div>
@@ -503,19 +501,6 @@
         <p class="sync-note" id="syncNote"></p>
       </div>
 
-      <!-- 回憶牆 -->
-      <div class="sp-pane" id="pane-mem">
-        <div class="card">
-          <h3>新增回憶</h3>
-          <div class="field"><label for="memTitle">標題</label><input id="memTitle" placeholder="例如：第一次一起去看海" /></div>
-          <div class="field"><label for="memDate">日期</label><input id="memDate" type="date" /></div>
-          <div class="field"><label for="memText">想記下來的話</label><textarea id="memText" rows="3" placeholder="那天發生了什麼、你想對他說什麼…"></textarea></div>
-          <div class="field"><label for="memPhoto">照片（選填，會自動縮小）</label><input id="memPhoto" type="file" accept="image/*" /></div>
-          <button class="btn btn-pink" id="memAdd" type="button">放上回憶牆</button>
-        </div>
-        <div class="mem-grid" id="memGrid"></div>
-      </div>
-
       <!-- 留言板 -->
       <div class="sp-pane" id="pane-msg">
         <div class="card">
@@ -544,27 +529,6 @@
 
       <!-- 寵物 -->
       <div class="sp-pane" id="pane-pet"><div id="petBox"></div></div>
-
-      <!-- 小房子 -->
-      <div class="sp-pane" id="pane-house">
-        <div class="card">
-          <h3>我們的小房子</h3>
-          <div class="room" id="roomBox">
-            <div class="motto-sign" id="roomMotto"></div>
-            <div class="room-items" id="roomItems"></div>
-            <div class="floor"></div>
-          </div>
-          <div class="field" style="margin-top:16px"><label>牆壁顏色</label>
-            <div class="toggle-row" id="wallRow"></div>
-          </div>
-          <div class="field"><label>家具（點一下放進／拿出房間，兩人都可以改）</label>
-            <div class="toggle-row" id="furnRow"></div>
-          </div>
-          <div class="field"><label for="mottoInput">牆上的話</label>
-            <div style="display:flex;gap:8px"><input id="mottoInput" style="flex:1" placeholder="例如：這裡是我們兩個人的家" /><button class="btn btn-pink" id="mottoSave" type="button">掛上牆</button></div>
-          </div>
-        </div>
-      </div>
 
       <!-- 心情小屋 -->
       <div class="sp-pane" id="pane-hut"><div id="hutBox"></div></div>
@@ -927,7 +891,7 @@ $("lockNowBtn").addEventListener("click", function(){ lockSpace(false); toast("�
 /* ================= 空間分頁 ================= */
 document.querySelectorAll(".sp-tab").forEach(function(b){ b.addEventListener("click", function(){ switchPane(b.getAttribute("data-pane")); }); });
 function switchPane(name){ document.querySelectorAll(".sp-tab").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-pane")===name); }); document.querySelectorAll(".sp-pane").forEach(function(p){ p.classList.toggle("on", p.id==="pane-"+name); }); if(name==="msg") markMessagesSeen(); if(name==="home") renderHome(); window.scrollTo(0,0); }
-function renderSpaceAll(){ $("spWho").textContent="現在是 "+myName()+" 在使用"; renderHome(); renderMemories(); renderMessages(); renderEvents(); renderPet(); renderHouse(); renderHut(); updateBadges();
+function renderSpaceAll(){ $("spWho").textContent="現在是 "+myName()+" 在使用"; renderHome(); renderMessages(); renderEvents(); renderPet(); renderHut(); updateBadges();
   $("syncNote").textContent = PTR.mode==="blob" ? ("同步編號 "+PTR.id+"・內容在存出前都已用密碼加密") : "本機模式：重新整理後資料會消失，請勿正式使用"; }
 function updateBadges(){ var un=DATA.messages.filter(function(m){ return m.by!==ROLE && !m.seen; }).length; var bd=$("msgBdg"); bd.style.display=un?"grid":"none"; bd.textContent=un;
   var hutWait=(DATA.hut.stage==="letter"&&DATA.hut.from!==ROLE)||(DATA.hut.stage==="reply"&&DATA.hut.from!==ROLE); var hb=$("hutBdg"); hb.style.display=hutWait?"grid":"none"; hb.textContent="1"; }
@@ -947,21 +911,11 @@ function renderHome(){
   var soon=DATA.events.filter(function(ev){ var d=dayDiff(ev.date); return d>=0&&d<=3; }).sort(function(x,y){ return x.date<y.date?-1:1; });
   $("homeRemind").innerHTML=soon.length? soon.map(function(ev){ var d=dayDiff(ev.date); return "<p style='margin:0 0 8px'><b>"+esc(ev.title)+"</b> · "+esc(ev.date)+" · "+(d===0?"<b style='color:var(--red)'>就是今天</b>":("剩 "+d+" 天"))+"</p>"; }).join("") : '<p class="mut">目前沒有 3 天內的重要事項。</p>';
   var pet=DATA.pet;
-  $("homePet").innerHTML= pet.born ? "<p style='margin:0'><b>"+esc(pet.name)+"</b>（"+esc(pet.species)+"）正在小房子裡等你們。<br /><span class='mut'>個性："+esc(pet.personality)+"・愛心 "+pet.hearts+" 顆</span></p>" : (pet.step===0 ? '<p class="mut" style="margin:0">寵物還沒開始創造。第一步由 '+esc(DATA.names.b)+' 先選種類。</p>' : '<p style="margin:0">寵物創造中：第 '+(pet.step+1)+' 步，等 '+esc(DATA.names[PET_STEPS[pet.step].role])+' 選「'+PET_STEPS[pet.step].label+'」。</p>');
+  $("homePet").innerHTML= pet.born ? "<p style='margin:0'><b>"+esc(pet.name)+"</b>（"+esc(pet.species)+"）正在等你們。<br /><span class='mut'>個性："+esc(pet.personality)+"・愛心 "+pet.hearts+" 顆</span></p>" : (pet.step===0 ? '<p class="mut" style="margin:0">寵物還沒開始創造。第一步由 '+esc(DATA.names.b)+' 先選種類。</p>' : '<p style="margin:0">寵物創造中：第 '+(pet.step+1)+' 步，等 '+esc(DATA.names[PET_STEPS[pet.step].role])+' 選「'+PET_STEPS[pet.step].label+'」。</p>');
   var hut=DATA.hut;
   $("homeHut").innerHTML= hut.stage==="empty" ? '<p class="mut" style="margin:0">小屋是空的。吵架時不敢當面說的話，可以先寫進小屋裡。</p>'
     : (hut.from===ROLE ? '<p style="margin:0">你留的東西還在小屋裡，等對方來看。</p>' : '<p style="margin:0"><b>有一封信在等你</b>，去心情小屋看看吧。</p>');
 }
-
-/* ---- 回憶牆 ---- */
-var pendingPhoto=null;
-$("memPhoto").addEventListener("change", function(){ var f=this.files[0]; if(!f){ pendingPhoto=null; return; } var img=new Image(); var url=URL.createObjectURL(f); img.onload=function(){ var max=900, sc=Math.min(1, max/Math.max(img.width,img.height)); var cv=document.createElement("canvas"); cv.width=Math.round(img.width*sc); cv.height=Math.round(img.height*sc); cv.getContext("2d").drawImage(img,0,0,cv.width,cv.height); pendingPhoto=cv.toDataURL("image/jpeg",0.82); URL.revokeObjectURL(url); }; img.src=url; });
-$("memAdd").addEventListener("click", async function(){ var title=$("memTitle").value.trim(), text=$("memText").value.trim(), date=$("memDate").value;
-  if(!title && !text && !pendingPhoto){ toast("先寫一點內容再放上去吧"); return; }
-  DATA.memories.unshift({ id:Date.now(), by:ROLE, title:title||"（沒有標題）", text:text, date:date||"", photo:pendingPhoto, ts:Date.now() });
-  await saveData(); $("memTitle").value=""; $("memText").value=""; $("memPhoto").value=""; pendingPhoto=null; renderMemories(); toast("放上回憶牆了"); });
-function renderMemories(){ var g=$("memGrid"); if(!DATA.memories.length){ g.innerHTML='<p class="mut">回憶牆還是空的，放上你們的第一個回憶吧。</p>'; return; }
-  g.innerHTML=DATA.memories.map(function(m){ return '<div class="mem-card">'+(m.photo?'<img src="'+m.photo+'" alt="'+esc(m.title)+'" />':"")+'<div class="mc-in"><h4>'+esc(m.title)+'</h4><p>'+esc(m.text)+'</p><div class="mc-meta">'+(m.date?esc(m.date)+" · ":"")+"由 "+esc(DATA.names[m.by])+" 放上來</div></div></div>"; }).join(""); }
 
 /* ---- 留言板 ---- */
 $("msgAdd").addEventListener("click", async function(){ var text=$("msgText").value.trim(); if(!text){ toast("先寫點什麼再貼吧"); return; }
@@ -1042,19 +996,6 @@ function renderPet(){ var p=DATA.pet, box=$("petBox"); stopPetWalk();
   box.innerHTML=head+'<p style="text-align:center"><b>'+esc(p.name)+'</b> 準備好了，就差你們兩個一起迎接牠。</p><p class="mut" style="text-align:center">'+esc(DATA.names.a)+(w.a?" 已迎接":" 還沒迎接")+" · "+esc(DATA.names.b)+(w.b?" 已迎接":" 還沒迎接")+'</p><div style="text-align:center">'+(w[ROLE]? '<p class="mut">你已經按下迎接了，等對方也按下，牠就會正式誕生。</p>' : '<button class="btn btn-pink" id="petWelcome" type="button">迎接 '+esc(p.name)+' 來到我們的家</button>')+"</div></div>";
   var wb=$("petWelcome"); if(wb) wb.addEventListener("click", async function(){ p.welcomed[ROLE]=true; if(p.welcomed.a&&p.welcomed.b){ p.born=true; } await saveData(); renderPet(); renderHome(); toast(p.born? (p.name+" 誕生了！") : "你迎接了，等對方也按下"); });
 }
-
-/* ---- 小房子 ---- */
-var WALLS=[{n:"櫻花粉",c:"#fde7ef"},{n:"奶油白",c:"#faf3e3"},{n:"薄荷綠",c:"#e2f2e7"},{n:"星空藍",c:"#e3ecfa"},{n:"薰衣草紫",c:"#eee7fa"}];
-var FURN=["沙發","書櫃","盆栽","電視","地毯","照片牆","暖燈","小餐桌"];
-function renderHouse(){ var h=DATA.house; $("roomBox").style.background=WALLS[h.wall].c; $("roomMotto").textContent=h.motto||""; $("roomMotto").style.display=h.motto?"block":"none";
-  var items=FURN.filter(function(f){ return h.items[f]; });
-  $("roomItems").innerHTML=items.length? items.map(function(f){ return '<span class="room-item">'+esc(f)+"</span>"; }).join("") : '<span class="mut">房間還空空的，從下面挑幾樣家具放進來吧。</span>';
-  $("wallRow").innerHTML=WALLS.map(function(w,i){ return '<button class="tgl'+(h.wall===i?" on":"")+'" data-wall="'+i+'" type="button">'+esc(w.n)+"</button>"; }).join("");
-  document.querySelectorAll("[data-wall]").forEach(function(b){ b.addEventListener("click", async function(){ h.wall=parseInt(b.getAttribute("data-wall"),10); await saveData(); renderHouse(); }); });
-  $("furnRow").innerHTML=FURN.map(function(f){ return '<button class="tgl'+(h.items[f]?" on":"")+'" data-furn="'+esc(f)+'" type="button">'+esc(f)+"</button>"; }).join("");
-  document.querySelectorAll("[data-furn]").forEach(function(b){ b.addEventListener("click", async function(){ var f=b.getAttribute("data-furn"); h.items[f]=!h.items[f]; await saveData(); renderHouse(); }); });
-  if(document.activeElement!==$("mottoInput")) $("mottoInput").value=h.motto||""; }
-$("mottoSave").addEventListener("click", async function(){ DATA.house.motto=$("mottoInput").value.trim(); await saveData(); renderHouse(); toast("掛上牆了"); });
 
 /* ---- 心情小屋（非同步、閱後即焚） ---- */
 function renderHut(){ var hut=DATA.hut, box=$("hutBox");
