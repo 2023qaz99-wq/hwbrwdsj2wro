@@ -783,11 +783,20 @@ function renderPartner(){
   if(PTR){ $("partnerBody").innerHTML='<h2 class="serif">講師合作申請</h2><p class="sub">想在 AI 智能學院開課？留下你的資料，我們會在五個工作天內與你聯繫。</p><form id="coopForm"><div class="field"><label>姓名</label><input required placeholder="你的名字" /></div><div class="field"><label>專長領域</label><input required placeholder="例如：資料分析、電腦視覺" /></div><div class="field"><label>課程提案（簡述）</label><textarea rows="3" required placeholder="想開什麼課、適合誰、預計幾堂"></textarea></div><button class="btn btn-accent" type="submit" style="width:100%">送出申請</button></form>';
     $("coopForm").addEventListener("submit", function(e){ e.preventDefault(); $("partnerBody").innerHTML='<h2 class="serif">已收到你的申請</h2><p class="sub">謝謝你的提案，我們會在五個工作天內回覆到你留下的聯絡信箱。</p><button class="btn btn-ghost" type="button" onclick="closeBk(\'partnerModalBk\')" style="width:100%">關閉</button>'; });
     return; }
+  showCoopDecoy();
+}
+function showCoopDecoy(){
+  $("partnerBody").innerHTML='<h2 class="serif" id="partnerTitle">講師合作申請</h2><p class="sub">想在 AI 智能學院開課？留下你的資料，我們會在五個工作天內與你聯繫。</p><form id="coopForm"><div class="field"><label>姓名</label><input required placeholder="你的名字" /></div><div class="field"><label>專長領域</label><input required placeholder="例如：資料分析、電腦視覺" /></div><div class="field"><label>課程提案（簡述）</label><textarea rows="3" required placeholder="想開什麼課、適合誰、預計幾堂"></textarea></div><button class="btn btn-accent" type="submit" style="width:100%">送出申請</button></form>';
+  $("coopForm").addEventListener("submit", function(e){ e.preventDefault(); $("partnerBody").innerHTML='<h2 class="serif">已收到你的申請</h2><p class="sub">謝謝你的提案，我們會在五個工作天內回覆到你留下的聯絡信箱。</p><button class="btn btn-ghost" type="button" onclick="closeBk(\'partnerModalBk\')" style="width:100%">關閉</button>'; });
+  var taps=0;
+  $("partnerTitle").addEventListener("click", function(){ taps++; if(taps>=3){ showSecretSetup(); } });
+}
+function showSecretSetup(){
   $("partnerBody").innerHTML='<h2 class="serif">講師合作申請</h2><p class="sub">AI 智能學院歡迎有業界實務經驗的講師加入，請填寫下方資料。</p>'
    +'<div class="err" id="setupErr"></div>'
    +'<form id="setupForm" autocomplete="off">'
-   +'<div class="field"><label for="suNameA">我的稱呼</label><input id="suNameA" placeholder="對方平常怎麼叫你" /></div>'
-   +'<div class="field"><label for="suNameB">對方的稱呼</label><input id="suNameB" placeholder="你平常怎麼叫他" /></div>'
+   +'<div class="field"><label for="suNameA">我的稱呼</label><input id="suNameA" placeholder="在空間裡顯示的名字" /></div>'
+   +'<div class="field"><label for="suNameB">對方的稱呼</label><input id="suNameB" placeholder="對方在空間裡顯示的名字" /></div>'
    +'<div class="field"><label for="suTrigger">觸發暗號</label><input id="suTrigger" placeholder="在搜尋框輸入這組字，才會出現登入框" /><div class="hint">選一組看起來像課程關鍵字、但只有你們知道的字。</div></div>'
    +'<div class="field"><label for="suPw">登入密碼</label><input id="suPw" type="password" placeholder="進空間用的密碼" /></div>'
    +'<div class="field"><label for="suUnlock">解鎖暗號</label><input id="suUnlock" placeholder="密碼錯 3 次、頁面消失後，用這組把它叫回來" /></div>'
@@ -813,7 +822,7 @@ async function doSetup(e){ e.preventDefault();
   try{ id=await blobCreate(VAULT); }catch(err){ mode="local"; LOCAL_VAULT=VAULT; }
   PTR={ mode:mode, id:id, role:"a", vanished:false, attempts:0 }; savePtr();
   DATA=data;
-  if(mode==="blob"){ $("partnerBody").innerHTML='<h2 class="serif">空間建立好了</h2><p class="sub">把下面這組同步編號傳給對方一次就好，不要公開貼在任何地方。他打開同一個頁面，捲到頁尾點「講師合作申請」，在「我是另一半，要配對」貼上編號，之後就能用你們約好的暗號進來。</p><div class="sync-code">'+esc(id)+'</div><button class="btn btn-accent" type="button" id="doneSetup" style="width:100%">我記好了</button>'; }
+  if(mode==="blob"){ $("partnerBody").innerHTML='<h2 class="serif">空間建立好了</h2><p class="sub">把下面這組同步編號傳給對方一次就好，不要公開貼在任何地方。他打開同一個頁面，捲到頁尾點「講師合作申請」，再點一下標題「講師合作申請」那幾個字三下，就會出現配對的地方，貼上編號，之後就能用你們約好的暗號進來。</p><div class="sync-code">'+esc(id)+'</div><button class="btn btn-accent" type="button" id="doneSetup" style="width:100%">我記好了</button>'; }
   else{ $("partnerBody").innerHTML='<h2 class="serif">空間建立好了（本機模式）</h2><div class="err" style="display:block">目前連不上同步儲存，這個裝置先以本機模式建立。注意：本機模式重新整理頁面後資料會消失，也無法與對方同步；網路恢復後請重新建立。</div><button class="btn btn-accent" type="button" id="doneSetup" style="width:100%">知道了</button>'; }
   $("doneSetup").addEventListener("click", function(){ closeBk("partnerModalBk"); toast("設定完成：在搜尋框輸入觸發暗號，就能進空間"); });
 }
