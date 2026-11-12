@@ -1578,7 +1578,7 @@ function buildWorld3D(){
       if(ball.userData.bounce>0){
         ball.userData.bounce=Math.max(0, ball.userData.bounce-dt*0.25);
         var bb=ball.userData.bounce;
-        ball.position.y=0.7+Math.abs(Math.sin((1-bb)*Math.PI*3+Math.PI/2))*1.2*bb;
+        ball.position.y=0.7+Math.sin((1-bb)*Math.PI)*1.2;
       } else {
         ball.position.y=0.7;
       }
