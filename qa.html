@@ -1436,9 +1436,8 @@ function buildWorld3D(){
   function joyCenterClient(){ var j=$("w3dJoy").getBoundingClientRect(); return { x:j.left+j.width/2, y:j.top+j.height/2 }; }
   function onDown(e){
     if(e.target && e.target.closest && e.target.closest("button")) return;
-    var r=container.getBoundingClientRect();
-    var px=e.clientX-r.left, py=e.clientY-r.top;
-    if(px<r.width*0.42 && py>r.height*0.45){
+    var jr=$("w3dJoy").getBoundingClientRect(), mx=24;
+    if(e.clientX>=jr.left-mx && e.clientX<=jr.right+mx && e.clientY>=jr.top-mx && e.clientY<=jr.bottom+mx){
       joy.active=true; joy.id=e.pointerId; joy.x=0; joy.y=0;
       try{ overlay.setPointerCapture(e.pointerId); }catch(err){}
     } else {
@@ -1577,9 +1576,9 @@ function buildWorld3D(){
     });
     if(ball){
       if(ball.userData.bounce>0){
-        ball.userData.bounce=Math.max(0, ball.userData.bounce-dt*0.45);
+        ball.userData.bounce=Math.max(0, ball.userData.bounce-dt*0.25);
         var bb=ball.userData.bounce;
-        ball.position.y=0.7+Math.abs(Math.sin((1-bb)*Math.PI*3+Math.PI/2))*0.9*bb;
+        ball.position.y=0.7+Math.abs(Math.sin((1-bb)*Math.PI*3+Math.PI/2))*1.2*bb;
       } else {
         ball.position.y=0.7;
       }
