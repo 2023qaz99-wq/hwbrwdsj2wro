@@ -1370,19 +1370,34 @@ function buildWorld3D(){
     return g;
   }
   floatIsland(-9,6.5,-14,1.1); floatIsland(9,7.5,-11,0.9);
+  /* 小池塘（後方，轉身也看得到） */
+  (function(){
+    var g=new THREE.Group();
+    var water=new THREE.Mesh(new THREE.CircleGeometry(1.7,24), new THREE.MeshBasicMaterial({color:0x7fb8e8}));
+    water.rotation.x=-Math.PI/2; water.position.y=0.03; g.add(water);
+    [[-0.6,0.4,0.34],[0.5,-0.3,0.28],[0.2,0.7,0.22]].forEach(function(p){
+      var pad=new THREE.Mesh(new THREE.CircleGeometry(p[2],12), lam(0x5da864));
+      pad.rotation.x=-Math.PI/2; pad.position.set(p[0],0.05,p[1]); g.add(pad);
+    });
+    var fl=new THREE.Mesh(new THREE.IcosahedronGeometry(0.18,0), lam(0xf2a9c6)); fl.position.set(-0.6,0.15,0.4); g.add(fl);
+    g.position.set(5.5,0,8); scene.add(g); tagAct(g,"pond");
+  })();
+  hydrangea(7,9.5,1.0,PINKS); hydrangea(-7.5,8.5,1.05);
+  flowerTree(9,10);
+  lantern(-2.4,7); lantern(2.8,9);
   /* 蝴蝶 */
   var butterflies=[];
   function butterfly(cx,cz,color){
     var g=new THREE.Group();
-    var wm=new THREE.MeshBasicMaterial({color:color, side:THREE.DoubleSide});
-    var wl=new THREE.Mesh(new THREE.CircleGeometry(0.16,6), wm); wl.scale.set(1,0.7,1); wl.position.x=-0.14; wl.rotation.y=0.5; g.add(wl);
-    var wr=new THREE.Mesh(new THREE.CircleGeometry(0.16,6), wm); wr.scale.set(1,0.7,1); wr.position.x=0.14; wr.rotation.y=-0.5; g.add(wr);
-    var bd=new THREE.Mesh(new THREE.CylinderGeometry(0.02,0.02,0.22,5), lam(0x4a2b4d)); bd.rotation.x=Math.PI/2; g.add(bd);
+    var wm=new THREE.MeshBasicMaterial({color:color});
+    var wl=new THREE.Mesh(new THREE.SphereGeometry(0.26,10,8), wm); wl.scale.set(1,0.22,0.7); wl.position.x=-0.22; g.add(wl);
+    var wr=new THREE.Mesh(new THREE.SphereGeometry(0.26,10,8), wm); wr.scale.set(1,0.22,0.7); wr.position.x=0.22; g.add(wr);
+    var bd=new THREE.Mesh(new THREE.CylinderGeometry(0.035,0.035,0.3,5), lam(0x4a2b4d)); bd.rotation.x=Math.PI/2; g.add(bd);
     g.position.set(cx,1.2,cz); scene.add(g);
     butterflies.push({g:g, cx:cx, cz:cz, ph:Math.random()*6.28, sp:0.3+Math.random()*0.25, wl:wl, wr:wr});
     return g;
   }
-  butterfly(-6,-3,0xf7a8c4); butterfly(5,-6,0xffd76e); butterfly(0,-9,0x9ec8f7);
+  butterfly(-3,-1,0xf7a8c4); butterfly(2,-3,0xffd76e); butterfly(0,3,0x9ec8f7); butterfly(5,6,0xff9ec6);
   /* 貓咪 Sprite（用 2D 院子同一張去背圖） */
   var catUri=w3dCatUri();
   var catTex=catUri?new THREE.TextureLoader().load(catUri):null;
@@ -1456,18 +1471,19 @@ function buildWorld3D(){
     if(act==="cat"){ w3dCatTap(); }
     else if(act==="flower"){ burstPetals(hits[0].point.clone()); w3dSay("好香的繡球花"); }
     else if(act==="bench"){ w3dSay("在長椅上休息一下"); }
-    else if(act==="bowl"){ petInteract("feed").then(function(){ paintWorldHearts(); }); burstPetals(hits[0].point.clone()); w3dSay("喵～吃飯飯！"); }
-    else if(act==="ball"){ if(ball) ball.userData.bounce=1; petInteract("play").then(function(){ paintWorldHearts(); }); w3dSay("玩球球！"); }
-    else if(act==="bed"){ petInteract("pat").then(function(){ paintWorldHearts(); }); w3dSay("小貓咪最喜歡這個墊子"); }
+    else if(act==="bowl"){ petInteract("feed"); paintWorldHearts(); burstPetals(hits[0].point.clone()); w3dFloatAt(w3dScreenPos(hits[0].point.clone()), "♥"); w3dSay("喵～吃飯飯！"); }
+    else if(act==="ball"){ if(ball) ball.userData.bounce=1; petInteract("play"); paintWorldHearts(); w3dFloatAt(w3dScreenPos(hits[0].point.clone()), "♥"); w3dSay("玩球球！"); }
+    else if(act==="bed"){ petInteract("pat"); paintWorldHearts(); w3dFloatAt(w3dScreenPos(hits[0].point.clone()), "♥"); w3dSay("小貓咪最喜歡這個墊子"); }
     else if(act==="house"){ w3dSay("這是小貓咪的家 🏠"); }
     else if(act==="gazebo"){ w3dSay("在涼亭下乘涼，好舒服"); }
+    else if(act==="pond"){ w3dSay("池塘裡有小魚游來游去"); }
   }
   function w3dCatTap(){
     catState.jump=1;
     var pos=w3dScreenPos(cat.position.clone().add(new THREE.Vector3(0,0.9,0)));
     w3dFloatAt(pos,"♥");
     w3dSay(PET_TAP_LINES[Math.floor(Math.random()*PET_TAP_LINES.length)]);
-    petInteract("tap").then(function(){ paintWorldHearts(); });
+    petInteract("tap"); paintWorldHearts();
   }
   function onUp(e){
     if(joy.active && e.pointerId===joy.id){
@@ -1545,16 +1561,16 @@ function buildWorld3D(){
       b.g.position.x=b.cx+Math.sin(t)*1.3;
       b.g.position.z=b.cz+Math.cos(t*0.8)*1.3;
       b.g.position.y=1.1+Math.sin(elapsed*1.3+b.ph)*0.25;
-      var flap=Math.sin(elapsed*10+b.ph)*0.55;
-      b.wl.rotation.y=0.5+flap; b.wr.rotation.y=-0.5-flap;
+      var flap=Math.sin(elapsed*10+b.ph)*0.5;
+      b.wl.rotation.z=0.35+flap; b.wr.rotation.z=-0.35-flap;
     });
     islands.forEach(function(is){
       is.g.position.y=is.y0+Math.sin(elapsed*0.5+is.ph)*0.18;
     });
     if(ball && ball.userData.bounce>0){
-      ball.userData.bounce=Math.max(0, ball.userData.bounce-dt*1.1);
+      ball.userData.bounce=Math.max(0, ball.userData.bounce-dt*0.6);
       var bb=ball.userData.bounce;
-      ball.position.y=Math.abs(Math.sin((1-bb)*Math.PI*3))*0.4*bb;
+      ball.position.y=Math.abs(Math.sin((1-bb)*Math.PI*3))*0.55*bb;
     }
     renderer.render(scene, camera);
   }
